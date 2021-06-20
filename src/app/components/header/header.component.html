@@ -1,19 +1,27 @@
 <ul>
-    <li>
-        <mat-form-field class="example-full-width">
-            <mat-label>Buscar</mat-label>
-            <input matInput #message maxlength="256" >
-            <mat-hint align="start"><strong>Buscar por categoria o item</strong> </mat-hint>
-
-          </mat-form-field>
+    <li><!--Nombre de la pagina con link a home-->
+        <a routerLink="/home" routerLinkActive="router-link-active" >TF2 SHOP</a>
     </li>
-    <li>
-        <a><button mat-mini-fab color="primary" aria-label="Carrito de Compras">
-            <i class="fas fa-shopping-cart"></i>
-            </button></a>
+    <li id='buscar'><!--barra de buscar-->
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Buscar</mat-label>
+              <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+              <mat-hint align="start"><strong>Busca items</strong> </mat-hint>
+            </mat-form-field>
+          </form>
     </li>
-    <li>
+    <li><!--icono de carrito de compras-->
+        <a routerLink="carrito" routerLinkActive="router-link-active" >
+        <button mat-mini-fab color="primary" aria-label="Carrito de Compras">
+        <i class="fas fa-shopping-cart"></i>
+        </button></a>
+    </li>
+    <li><!--icono de usario-->
             <a><i class="far fa-user"></i></a>
+    </li>
+    <li><!--hipervinculo hacia formularios de usuario-->
+        
     </li>
 </ul>
 <!--<div class="header-container">
