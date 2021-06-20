@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
