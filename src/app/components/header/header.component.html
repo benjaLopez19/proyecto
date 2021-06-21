@@ -3,14 +3,13 @@
         <a routerLink="/home" routerLinkActive="router-link-active" >TF2 SHOP</a>
     </li>
     <li id='buscar'><!--barra de buscar-->
-          <form FormGroup="busqueda" ngSubmit="buscar()" class="barraBuscar">
             <mat-form-field class="example-full-width">
               <mat-label>Buscar</mat-label>
-              <input matInput #message formControlName="search" maxlength="256" placeholder="Ejemplo: Gibus">
+              <input matInput #message [formControl]="search" maxlength="256" placeholder="Ejemplo: Gibus">
               <mat-hint align="start"><strong>Busca items</strong> </mat-hint>
             </mat-form-field>
-            <button type="submit" ></button>
-          </form>
+            <button (click)="searchProduct()" >BUSCAR</button>
+            <p>{{search.value}}</p>
     </li>
     <li><!--icono de carrito de compras-->
         <a routerLink="carrito" routerLinkActive="router-link-active" >
