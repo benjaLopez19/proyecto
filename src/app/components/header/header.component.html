@@ -1,3 +1,4 @@
+<mat-toolbar>
 <ul id='headerEntero'>
     <li><!--Nombre de la pagina con link a home-->
         <a routerLink="/home" routerLinkActive="router-link-active" >TF2 SHOP</a>
@@ -8,8 +9,10 @@
               <input matInput #message [formControl]="search" maxlength="256" placeholder="Ejemplo: Gibus">
               <mat-hint align="start"><strong>Busca items</strong> </mat-hint>
             </mat-form-field>
-            <button (click)="searchProduct()" >BUSCAR</button>
-            <p>{{search.value}}</p>
+            <!--<p>{{search.value}}</p>-->
+    </li>
+    <li>
+        <button routerLink="/inter" (click)="searchProduct()">BUSCAR</button>
     </li>
     <li><!--icono de carrito de compras-->
         <a routerLink="carrito" routerLinkActive="router-link-active" >
@@ -31,6 +34,8 @@
         </ul>
     </li>
 </ul>
+</mat-toolbar>
+
 <!--<mat-grid-list cols='5'>
     <mat-grid-title
 </mat-grid-list>-->
