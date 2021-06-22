@@ -1,0 +1,60 @@
+ngb-carousel{
+    width:80%;
+    height:25em;
+    margin-left: 10%;
+    margin-right:10%;
+    background-color:#ed6700 ;
+    border-radius: 2%;
+    font-family: 'tf2';
+}
+
+#ofertas-label{
+    margin-left: 10%;
+    font-size: 3em;
+    font-family: 'tf2';
+}
+
+#nuevos-label{
+    margin-left: 10%;
+    font-size: 3em;
+    margin-top:2%;
+    font-family: 'tf2';
+}
+
+.product-card{
+    width: 18em;
+    height:18em;
+    background-color: #bfbfbf;
+    border-radius: 20%;
+}
+
+.product-list{
+    list-style-type: none;
+}
+
+.product-list .product-item{
+    float:left;
+    margin-left: 8em;
+    margin-top: 3em;
+    font-family: 'tf2';
+}
+
+.categorias{
+    width:20%;
+    background-color: #bfbfbf;
+    margin-left:2%;
+    font-family: 'tf2';
+}
+
+.categorias-button{
+    background-color: #bfbfbf;
+    font-family: 'tf2';
+}
+
+mat-menu{
+    background:#bfbfbf;
+}
+
+mat-divider{
+    margin-top:2%;
+}

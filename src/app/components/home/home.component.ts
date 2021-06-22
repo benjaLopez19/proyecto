@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -12,7 +13,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
   
   
 

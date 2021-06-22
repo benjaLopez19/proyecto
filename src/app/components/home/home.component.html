@@ -1,19 +1,156 @@
+
+
 <div id="categorias">   
-<button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+<button mat-raised-button [matMenuTriggerFor]="menu" class="categorias" >Categorias</button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item value="soldier">Soldier</button>
-    <button mat-menu-item value="scout">Scout</button>
-    <button mat-menu-item value="pyro">Pyro</button>
-    <button mat-menu-item value="heavy">Heavy</button>
-    <button mat-menu-item value="demoman">Demoman</button>
-    <button mat-menu-item value="engineer">Engineer</button>
-    <button mat-menu-item value="medic">Medic</button>
-    <button mat-menu-item value="sniper">Sniper</button>
-    <button mat-menu-item value="spy">Spy</button>
+    <button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button>
+    <button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button>
+    <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
+</mat-menu>
+<mat-menu #mercs="matMenu">
+    <button mat-menu-item value="scout" class="categorias-button">Scout</button>
+    <button mat-menu-item value="soldier"class="categorias-button">Soldier</button>
+    <button mat-menu-item value="pyro"class="categorias-button">Pyro</button>
+    <button mat-menu-item value="heavy"class="categorias-button">Heavy</button>
+    <button mat-menu-item value="demoman"class="categorias-button">Demoman</button>
+    <button mat-menu-item value="engineer"class="categorias-button">Engineer</button>
+    <button mat-menu-item value="medic"class="categorias-button">Medic</button>
+    <button mat-menu-item value="sniper"class="categorias-button">Sniper</button>
+    <button mat-menu-item value="spy"class="categorias-button">Spy</button>
 </mat-menu>
 
-</div>
+<mat-divider></mat-divider>
 
+</div>
+<label id="ofertas-label">Ofertas</label>
 <div id="ofertas">
+    <ngb-carousel>
+  <ng-template ngbSlide>
+    <ul class="product-list">
+        <li class="product-item"> 
+            <mat-card class="product-card">
+
+            </mat-card>
+        </li>
+        <li class="product-item">
+            <mat-card class="product-card">
+
+            </mat-card>
+        </li>
+        <li class="product-item">
+            <mat-card class="product-card">
+
+            </mat-card>
+        </li>
+    </ul>
+   
+  </ng-template>
+  <ng-template ngbSlide>
+<ul class="product-list">
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+</ul>
+  </ng-template>
+  <ng-template ngbSlide>
+<ul class="product-list">
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+    <li class="product-item">
+        <mat-card class="product-card">
+
+        </mat-card>
+    </li>
+</ul>
+  </ng-template>
+</ngb-carousel>
+
+<mat-divider></mat-divider>
+
+
+<label id="nuevos-label">Nuevos</label>
+<div id="nuevos">
+
+</div>
+    <ngb-carousel>
+        <ng-template ngbSlide>
+            <ul class="product-list">
+                <li class="product-item">
+                    <mat-card class="product-card">
     
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+            </ul>
+    
+        </ng-template>
+        <ng-template ngbSlide>
+            <ul class="product-list">
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+            </ul>
+        </ng-template>
+        <ng-template ngbSlide>
+            <ul class="product-list">
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+                <li class="product-item">
+                    <mat-card class="product-card">
+    
+                    </mat-card>
+                </li>
+            </ul>
+        </ng-template>
+    </ngb-carousel>
+
 </div>
