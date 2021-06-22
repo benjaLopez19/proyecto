@@ -1,8 +1,12 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+//const cors = require("cors");
 
+
+//============LOGIN?=========
 const clave=jwt.sign({foo:'bar'},'contra');
 console.log(clave);
+//===========================
 
 const server = express();
 const mysql = require('mysql');
@@ -32,13 +36,20 @@ connection.connect((error:any)=>{
     }
 });
 
+//server.use(cors);
+server.use(function(req:any, res:any, next:any) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 //-----------------------------PRODUCTOS--------------------------------------
 
 server.get('/getProductos',(req:any,res:any)=>{
     connection.query("SELECT * FROM productos",(req1:any,resultados:any)=>{
-        console.log(resultados);
+        console.log("getProductos");
         //res.send(resultados);
-        res.send(resultados);
+        res.status(201).send(resultados);
     });
 });
 
@@ -47,6 +58,7 @@ server.get('/getProductosByNombre/:nombre',(req:any,res:any)=>{
     //connection.query("SELECT * FROM productos WHERE nombre contains '?'",nombre,(req1:any,resultados:any)=>{
     connection.query("SELECT * FROM productos WHERE nombre LIKE ?",nombre,(req1:any,resultados:any)=>{
         //console.log(resultados);
+        console.log("getProductosByNombre");
         console.log(req1);
         console.log(resultados);
         res.status(201).send(resultados);

@@ -18,6 +18,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { SearchComponent } from './components/search/search.component';
+import { InterComponent } from './components/inter/inter.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { MatMenuModule} from '@angular/material/menu';
     CategoriasComponent,
     CarritoComponent,
     FormularioComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    SearchComponent,
+    InterComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { MatMenuModule} from '@angular/material/menu';
     ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
