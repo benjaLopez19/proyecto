@@ -11,7 +11,9 @@ import {ErrorStateMatcher} from '@angular/material/core';
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
- //error del email
+ //error del email-validators
+
+ 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -34,6 +36,12 @@ export class FormularioComponent implements OnInit {
   contrasenia2 = new FormControl('', [
     Validators.required
   ]);
+  comuna = new FormControl('', [
+    Validators.required
+  ]);
+  recaptcha = new FormControl('', [
+    Validators.required
+  ]);
   /*error del email*/
   region = new FormControl('');
   //ocultar la pass
@@ -45,10 +53,12 @@ export class FormularioComponent implements OnInit {
   /*newValue='';*/
   comunas = ' '.split('.');
   RegistrarForm:FormGroup;
-
+  siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
   constructor(public fb: FormBuilder) {
 
-    this.RegistrarForm=this.fb.group({});
+    this.RegistrarForm = this.fb.group({
+      recaptcha: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -115,7 +125,15 @@ export class FormularioComponent implements OnInit {
 
 }
   Registrarse(){
-    console.log(this.nombre.value+' '+this.apellido.value+' '+this.rut.value+' '+this.direccion.value+' '+this.direccion.value+' '+this.contrasenia.value+' '+this.contrasenia2.value+' '+this.emailFormControl.value);
+    console.log(this.nombre.value+' '
+    +this.apellido.value+' '
+    +this.rut.value+'  '
+    +this.direccion.value+' '
+    +this.contrasenia.value+' '
+    +this.contrasenia2.value+' '
+    +this.emailFormControl.value+' '
+    +this.region.value+' '
+    +this.comuna.value+' ');
   }
   
 }
