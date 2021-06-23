@@ -26,6 +26,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
     UsuarioComponent,
     SearchComponent,
     InterComponent,
+    InicioSesionComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatDividerModule,
     MatIconModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    NgxCaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
