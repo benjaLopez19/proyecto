@@ -1,5 +1,51 @@
-
+<button mat-raised-button [matMenuTriggerFor]="menu" class="categorias">Categorias</button>
+<mat-menu #menu="matMenu">
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button></a>
+    <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
+</mat-menu>
+<mat-menu #mercs="matMenu">
+    <a routerLink="/categorias"><button mat-menu-item value="scout" class="categorias-button">Scout</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="soldier" class="categorias-button">Soldier</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="pyro" class="categorias-button">Pyro</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="heavy" class="categorias-button">Heavy</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="demoman" class="categorias-button">Demoman</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="engineer" class="categorias-button">Engineer</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="medic" class="categorias-button">Medic</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="sniper" class="categorias-button">Sniper</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="spy" class="categorias-button">Spy</button></a>
+</mat-menu>
 
 <div class="producto">
-
+    <section>
+    <div class="image">
+        <img src="http://media.steampowered.com/apps/440/icons/all_domination_large.ae4d9796302b1a2ccd51ffa603c037f49c6accbf.png" alt="Gastly Gibus">
+    </div>
+    <div class="detalles">
+        <mat-card class="detalles-card">
+            <h1>Nombre de producto: Ghastly Gibus</h1>
+            <p>Descripción</p>
+            <p>Precio</p>
+            <p>Stock</p>
+            <button mat-button>Añadir al Carro</button>
+        </mat-card>
+    </div>
+    
+    <div class="comentarios">
+        <label>Comentarios:</label>
+        <mat-card class="comentarios-card" >
+            <ul class="comentarios-list" *ngFor="let item of usuarios">
+                <li>
+                    <mat-card class="comentarios-card-item">
+                        <div>Calificación: {{item.calificacion}}</div>
+                        <div>{{item.nombre}} comentó:</div> 
+                        <div>{{item.comentario}}</div>
+                     </mat-card>
+                </li>
+            </ul>
+        </mat-card>
+        <button mat-mini-fab><i class="fas fa-plus"></i></button>
+    </div>
+    
+    </section>
 </div>

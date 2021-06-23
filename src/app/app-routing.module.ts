@@ -5,6 +5,8 @@ import {CarritoComponent} from './components/carrito/carrito.component'
 import {FormularioComponent} from './components/formulario/formulario.component'
 import {SearchComponent} from './components/search/search.component'
 import {InterComponent} from './components/inter/inter.component'
+import { CategoriasComponent } from './components/categorias/categorias.component';
+import { ProductoComponent } from './components/producto/producto.component';
 
 
 const routes: Routes = [
@@ -13,7 +15,9 @@ const routes: Routes = [
   {path:'carrito', component:CarritoComponent},
   {path:'formulario', component:FormularioComponent},
   {path:'search',component:SearchComponent},
-  {path:'inter',component:InterComponent}
+  {path:'inter',component:InterComponent},
+  {path:'categorias',component:CategoriasComponent},
+  {path:'producto',component:ProductoComponent}
 ];
 
 @NgModule({
