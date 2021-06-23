@@ -115,6 +115,7 @@ export class FormularioComponent implements OnInit {
 
 }
   Registrarse(){
+    
     console.log(this.nombre.value+' '+this.apellido.value+' '+this.rut.value+' '+this.direccion.value+' '+this.direccion.value+' '+this.contrasenia.value+' '+this.contrasenia2.value+' '+this.emailFormControl.value);
   }
   

@@ -62,13 +62,14 @@ server.post('/crearProducto', (req, res) => {
     let descripcion = req.body.descripcion;
     let categoria = req.body.categoria;
     let precio = req.body.precio;
+    let imagen = req.body.imagen;
     console.log(nombre);
     if (calificacion == null || nombre == null || descripcion == null || categoria == null || stock == null || precio == null) {
         console.log("No se puede insertar, datos no completos");
         res.status(401).send("No se han insertado todos los campos");
     }
     else {
-        connection.query("INSERT INTO productos(id,stock,calificacion,nombre,descripcion,categoria,precio)VALUES('" + null + "','" + stock + "','" + calificacion + "','" + nombre + "','" + descripcion + "','" + categoria + "','" + precio + "')", (req1, resultados) => {
+        connection.query("INSERT INTO productos(id,stock,calificacion,nombre,descripcion,categoria,precio,imagen)VALUES('" + null + "','" + stock + "','" + calificacion + "','" + nombre + "','" + descripcion + "','" + categoria + "','" + precio + "','" + imagen + "')", (req1, resultados) => {
             //console.log(resultados);
             res.status(201).send(`Producto creado con el id:${resultados.insertId}`);
         });
@@ -107,13 +108,14 @@ server.post('/crearUsuario', (req, res) => {
     let clave = req.body.clave;
     let region = req.body.region;
     let comuna = req.body.comuna;
+    let rut = req.body.rut;
     console.log(email);
     if (email == null || nombre == null || clave == null || region == null || comuna == null) {
         console.log("No se puede insertar, datos no completos");
         res.status(401).send("No se han completado todos los campos");
     }
     else {
-        connection.query("INSERT INTO usuarios(email,nombre,clave,region,comuna)VALUES('" + email + "','" + nombre + "',MD5('" + clave + "'),'" + region + "','" + comuna + "')", (req1, resultados) => {
+        connection.query("INSERT INTO usuarios(email,nombre,clave,region,comuna,rut)VALUES('" + email + "','" + nombre + "',MD5('" + clave + "'),'" + region + "','" + comuna + "','" + rut + "')", (req1, resultados) => {
             console.log(resultados);
             if (resultados == undefined) {
                 res.status(401).send("ERROR");
@@ -136,9 +138,10 @@ server.put('/editarUsuario', (req, res) => {
     let nombre = req.body.nombre;
     let region = req.body.region;
     let comuna = req.body.comuna;
+    let rut = req.body.rut;
     console.log(req.body);
     //UPDATE `usuarios` SET `nombre` = 'gato', `region` = 'valparais', `comuna` = 'limach' WHERE `usuarios`.`email` = 'donwea@live.cl';
-    connection.query("UPDATE usuarios SET nombre = '" + nombre + "', region = '" + region + "', comuna = '" + comuna + "' WHERE usuarios.email = '" + email + "'", (req1, resultados) => {
+    connection.query("UPDATE usuarios SET nombre = '" + nombre + "', region = '" + region + "', comuna = '" + comuna + "', rut = '" + rut + "' WHERE usuarios.email = '" + email + "'", (req1, resultados) => {
         console.log(resultados);
         res.status(200).send(resultados);
     });
@@ -208,6 +211,22 @@ server.delete('/borrarComentario', (req, res) => {
     let id = req.body.id;
     connection.query("DELETE FROM comentario WHERE id=?", id, (req1, resultados) => {
         console.log(resultados);
+        res.send(resultados);
+    });
+});
+//---------------PEDIDOS-------------------
+server.get('/getPedidos', (req, res) => {
+    connection.query("SELECT * FROM pedidos", (req1, resultados) => {
+        console.log(resultados);
+        let aux = resultados;
+        console.log(aux[0].idProductos);
+        res.send(resultados);
+    });
+});
+server.post('/generarPedido', (req, res) => {
+    let idProductos = req.body.productos;
+    let idUsuario = req.body.usuario;
+    connection.query("INSERT INTO pedidos(idProductos,idUsuario)VALUES('" + idProductos + "','" + idUsuario + "')", (req1, resultados) => {
         res.send(resultados);
     });
 });

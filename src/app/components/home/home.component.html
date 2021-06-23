@@ -28,18 +28,21 @@
   <ng-template ngbSlide>
     <ul class="product-list">
         <li class="product-item"> 
+            <button (click)='productoSeleccionado(productos[0].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[0].nombre}}</p>
+            </mat-card>
+            </button >
+        </li>
+        <li class="product-item">
             <mat-card class="product-card">
-
+                <p>{{productos[1].nombre}}</p>
             </mat-card>
         </li>
         <li class="product-item">
             <mat-card class="product-card">
-
-            </mat-card>
-        </li>
-        <li class="product-item">
-            <mat-card class="product-card">
-
+                <p>{{productos[2].nombre}}</p>
             </mat-card>
         </li>
     </ul>
@@ -117,7 +120,7 @@
             <ul class="product-list">
                 <li class="product-item">
                     <mat-card class="product-card">
-    
+                        
                     </mat-card>
                 </li>
                 <li class="product-item">

@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormGroup,FormBuilder, Validators, AbstractControl, FormControl} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {SearchService} from '../../services/search/search.service'
 import {Producto} from '../../interfaces/producto';
 
@@ -9,7 +9,7 @@ import {Producto} from '../../interfaces/producto';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
  
   search = new FormControl('');
   productos:Producto|undefined;
@@ -19,14 +19,6 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     
-  }
-
-  ngOnChanges(){
-    console.log("entra en ngOnChanges");
-    this.servicio.getBusqueda().subscribe(datos=>{
-      this.productos = datos;
-      console.log(datos);
-    });
   }
 
   searchProduct(){
