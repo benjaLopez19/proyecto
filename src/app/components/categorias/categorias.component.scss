@@ -1,0 +1,50 @@
+
+
+ngb-panel{
+    width:20%;
+}
+.categorias{
+    width: 20%;
+    background: #ed6700;
+    height:100%;
+    margin-left:1%;
+    float:left;
+}
+
+.categorias-list{
+    list-style-type: none;
+    margin-top: 5%;
+}
+
+.card{
+    width: 50%;
+    background: #964100;
+}
+
+.productos{
+    background:#ed6700;
+    width: 77%;
+    height:100%;
+    margin-left: 22%;
+    margin-top: 1%;
+    overflow: auto;
+}
+
+.productos-list{
+    list-style-type: none;
+}
+
+.productos-list li{
+    padding-top:3%;
+    padding-bottom:5%;
+}
+
+.productos-card{
+    width: 15em;
+    height:15em;
+    background-color: #bfbfbf;
+    border-radius: 10%;
+    float:left;
+    margin-top:3%;
+    margin-left:5%;
+}

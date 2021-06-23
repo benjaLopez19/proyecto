@@ -1,1 +1,52 @@
-<p>categorias works!</p>
+<section>
+
+<div class="categorias">
+
+<ul class="categorias-list">
+<li>
+<button mat-button>Ofertas</button>
+</li>
+<li>
+<button mat-button>Nuevos</button>    
+</li>
+<li>
+<button mat-button type="button"  (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample">
+    Mercenarios
+</button>
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+        <div class="card-body">
+            <ul class="categorias-merc-list">
+                <li><button mat-button value="scout" class="categorias-button">Scout</button> </li>
+                <li><button mat-button value="soldier" class="categorias-button">Soldier</button></li>
+                <li><button mat-button value="pyro" class="categorias-button">Pyro</button></li>
+                <li><button mat-button value="heavy" class="categorias-button">Heavy</button></li>
+                <li><button mat-button value="demoman" class="categorias-button">Demoman</button></li>
+                <li><button mat-button value="engineer" class="categorias-button">Engineer</button></li>
+                <li><button mat-button value="medic" class="categorias-button">Medic</button></li>
+                <li><button mat-button value="sniper" class="categorias-button">Sniper</button></li>
+                <li><button mat-button value="spy" class="categorias-button">Spy</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</li>
+</ul>
+ </div>
+
+<div class="productos">
+    <ul class="productos-list">
+        <a [routerLink]="['/producto']" routerLinkActive="router-link-active">
+        <li>
+            <mat-card class="productos-card" *ngFor="let item of Datos">
+                <h3>Nombre: {{item.nombre}}</h3>
+                <h2>Precio: {{item.precio}}</h2>
+                <h2>Stock: {{item.stock}}</h2>
+            </mat-card>
+        </li>
+        </a>
+    </ul>
+
+</div>
+</section>
