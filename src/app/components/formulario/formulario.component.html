@@ -1,5 +1,6 @@
 <form [formGroup]="RegistrarForm" (ngSubmit)="Registrarse()">
     <h2>Cuentanos quien eres</h2>
+    
     <mat-grid-list cols="2" rowHeight="5:1">
         <mat-grid-tile><!--izquierda-->
             <p> <!--Nombres-->
@@ -98,5 +99,9 @@
         [siteKey]="siteKey"
         formControlName="recaptcha">
     </ngx-recaptcha2>
+    <p *ngIf="bool">
+        <ngb-alert *ngIf="bool" type="danger" (closed)="close()">Usuario ya registrado</ngb-alert>
+    </p>
     <button type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid "> KLASJDKLASDJKALSJDLSAKDJAKLSDJASKDLJ</button>
+
 </form>

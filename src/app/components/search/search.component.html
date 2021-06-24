@@ -1,4 +1,4 @@
-<table>
+<table *ngIf="busqueda==true">
     <tr>
         <th>Nombre</th>
         <th>descripcion</th>
@@ -12,3 +12,8 @@
         <td>{{item.precio}}</td>
     </tr>
 </table>
+
+<p *ngIf="busqueda==false">
+   <ngb-alert type="danger">No se encuentran resultados de la busqueda</ngb-alert>
+</p>
+  
