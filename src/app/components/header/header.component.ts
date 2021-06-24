@@ -10,7 +10,9 @@ import {Producto} from '../../interfaces/producto';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
- 
+  /*variable de inicio de sesion para el ngIF */
+  sesion = 1;
+  /*0=iniciar sesion, registrarse; 1=cerrar sesion; 2=iniciar sesion admin*/
   search = new FormControl('');
   productos:Producto|undefined;
 

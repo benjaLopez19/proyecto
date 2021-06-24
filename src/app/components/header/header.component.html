@@ -23,13 +23,22 @@
     <li><!--icono de usario-->
             <a><i class="far fa-user"></i></a>
     </li>
-    <li><!--hipervinculo hacia formularios de usuario-->
+    <li *ngIf='sesion==0'><!--hipervinculo hacia formularios de usuario-->
         <ul id='login'>
             <li><!--al inicio de sesion-->
                 <a routerLink="/inicio-sesion" routerLinkActive="router-link-active" >Iniciar Sesion</a>
             </li>
             <li><!--a registrarce-->
                 <a routerLink="/formulario" routerLinkActive="router-link-active" >Registrarse</a>
+            </li>
+        </ul>
+    </li>
+    <li *ngIf='sesion==1'><!--hipervinculo hacia formularios de usuario-->
+        <ul id='login'>
+            <li><!--al inicio de sesion-->
+                <a routerLink="/inicio-sesion" routerLinkActive="router-link-active" >Cerrar Sesion</a>
+            </li>
+            <li><!--a registrarce-->
             </li>
         </ul>
     </li>
