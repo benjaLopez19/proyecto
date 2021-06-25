@@ -27,9 +27,7 @@ export class FormularioComponent implements OnInit {
   apellido = new FormControl('', [
     Validators.required
   ]);
-  rut = new FormControl('', [
-    Validators.required
-  ]);
+  rut = new FormControl('', [Validators.required, Validators.pattern("[0-9]{1,10}\-[K|k|0-9]")]);
   direccion = new FormControl('', [
     Validators.required
   ]);
