@@ -10,27 +10,40 @@ export class StorageService {
     this.localStorageService=localStorage;
   }
 
+  rawDatos:string ="";
+  datos = {
+    token:"",
+    admin:2
+  };
+
   cargarDatos(token:string,admin:number){
     console.log("cargar datos");
     let datos = {
       token:`${token}`,
-      admin:`${admin}`
+      admin:admin
     }
     console.log(datos);
     this.localStorageService.setItem('sesion', JSON.stringify(datos));
+    this.datos = datos;
   }
 
-  /*
   borrarDatos(){
     console.log('borrar datos');
-    this.localStorageService.removeItem('wea');
+    this.localStorageService.removeItem('sesion');
+    this.datos = {
+      token:'',
+      admin:2
+    }
   }
 
   getDatos(){
-    let dato = localStorage.getItem('wea');
-    console.log(dato);
-  }*/
-
-
+    if(localStorage.getItem("sesion")!=null){
+      this.rawDatos = localStorage.getItem('sesion')!;
+      this.datos = JSON.parse(this.rawDatos);
+    }else{
+      console.log("no hay datos");
+    }
+  
+  }
 
 }

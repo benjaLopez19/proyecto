@@ -11,8 +11,6 @@ export class ApiService {
   url="http://localhost:4000/";
   producto:number=0;
 
-  header:number=0;
-
   getProductos():Observable<any>{
     console.log("entra al servicio");
     return this.http.get(`${this.url}getProductos`);    

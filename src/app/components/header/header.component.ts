@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {SearchService} from '../../services/search/search.service'
 import {Producto} from '../../interfaces/producto';
 import {ApiService} from '../../services/api/api.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 
 @Component({
@@ -16,17 +17,31 @@ export class HeaderComponent implements OnInit {
   /*0=iniciar sesion, registrarse; 1=cerrar sesion; 2=iniciar sesion admin*/
   search = new FormControl('');
   productos:Producto|undefined;
+  aux =0;
 
-  constructor(private router:Router, private servicio:SearchService, public api:ApiService) { 
+  constructor(private router:Router, private servicio:SearchService, private api:ApiService, public storage:StorageService) { 
   } 
-
+  
   ngOnInit(): void {
-    
+    console.log('ngOnInit');
+    this.storage.getDatos();
   }
 
   searchProduct(){
     this.servicio.valor(this.search.value);
-  
+  }
+
+  test(){
+    console.log(this.storage.datos["admin"]);
+  }
+
+  cerrarSesion(){
+    this.storage.borrarDatos();
+  }
+
+  admin(){
+    console.log("El admin cuando");
+    
   }
 
 

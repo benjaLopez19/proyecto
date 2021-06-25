@@ -177,7 +177,7 @@ server.post('/inicioSesion', (req, res) => {
     console.log(req.body);
     connection.query("SELECT * FROM usuarios where email=? and clave=md5(?)", [email, clave], (error, resultados, fields) => {
         if (resultados.length == 0) {
-            res.json({ mensaje: "Usuario o contraseña incorrectos" });
+            res.status(404).json({ mensaje: "Usuario o contraseña incorrectos" });
         }
         else {
             let admin = resultados[0]["admin"];
@@ -187,7 +187,7 @@ server.post('/inicioSesion', (req, res) => {
             const token = jwt.sign(payload, server.get('token') /*, {
                 expiresIn: 1440
             }*/);
-            res.json({
+            res.status(201).json({
                 mensaje: 'Autenticación correcta',
                 token: token,
                 admin: admin //devuelve admin para verificar si el usuario que inicia sesion es adminstrador
