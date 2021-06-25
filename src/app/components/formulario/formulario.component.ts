@@ -16,7 +16,7 @@ import {ApiService} from '../../services/api/api.service';
 export class FormularioComponent implements OnInit {
  //error del email-validators
   bool = false;
- 
+ //validators
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -42,8 +42,10 @@ export class FormularioComponent implements OnInit {
   ]);
   recaptcha = new FormControl('', [
     Validators.required
-  ]);
-  /*error del email*/
+  ])
+  //validators
+
+  
   region = new FormControl('');
   //ocultar la pass
   hide =true;
