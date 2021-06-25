@@ -68,7 +68,6 @@ rutasSegura.use((req:any, res:any, next:any) => {
 
 server.get('/getProductos',(req:any,res:any)=>{
     connection.query("SELECT * FROM productos",(req1:any,resultados:any)=>{
-        console.log("getProductos");
         //res.send(resultados);
         res.status(201).send(resultados);
     });
@@ -191,9 +190,10 @@ server.put('/editarUsuario', (req:any,res:any)=>{
     });
 });
 
-server.get('/inicioSesion', (req:any,res:any)=>{
+server.post('/inicioSesion', (req:any,res:any)=>{
     let email = req.body.email;
     let clave = req.body.clave;
+    console.log(req.body);
     
     connection.query("SELECT * FROM usuarios where email=? and clave=md5(?)",[email,clave],(error:any,resultados:any,fields:any)=>{
         if(resultados.length == 0){

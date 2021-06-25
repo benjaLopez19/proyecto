@@ -42,4 +42,12 @@ export class ApiService {
     return this.http.post(`${this.url}crearUsuario`,body.toString(),{headers:new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')});
   }
 
+  incioSesion(email:string,clave:string):Observable<any>{
+    const body = new HttpParams()
+      .set("email",email)
+      .set("clave",clave);
+
+    return this.http.post(`${this.url}inicioSesion`,body.toString(),{headers:new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')});
+  }
+
 }

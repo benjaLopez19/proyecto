@@ -5,6 +5,7 @@ import {SearchService} from '../../services/search/search.service'
 import {Producto} from '../../interfaces/producto';
 import {ApiService} from '../../services/api/api.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,5 +26,8 @@ export class HeaderComponent implements OnInit {
 
   searchProduct(){
     this.servicio.valor(this.search.value);
+  
   }
+
+
 }

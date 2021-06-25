@@ -61,7 +61,6 @@ rutasSegura.use((req, res, next) => {
 //-----------------------------PRODUCTOS--------------------------------------
 server.get('/getProductos', (req, res) => {
     connection.query("SELECT * FROM productos", (req1, resultados) => {
-        console.log("getProductos");
         //res.send(resultados);
         res.status(201).send(resultados);
     });
@@ -172,9 +171,10 @@ server.put('/editarUsuario', (req, res) => {
         res.status(200).send(resultados);
     });
 });
-server.get('/inicioSesion', (req, res) => {
+server.post('/inicioSesion', (req, res) => {
     let email = req.body.email;
     let clave = req.body.clave;
+    console.log(req.body);
     connection.query("SELECT * FROM usuarios where email=? and clave=md5(?)", [email, clave], (error, resultados, fields) => {
         if (resultados.length == 0) {
             res.json({ mensaje: "Usuario o contraseña incorrectos" });

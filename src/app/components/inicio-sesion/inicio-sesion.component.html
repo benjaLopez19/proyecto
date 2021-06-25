@@ -1,5 +1,4 @@
-<p>inicio-sesion works!</p>
-<form [formGroup]="IniciarSesionForm" (ngsubmit)='IniciarSesion()'>
+<form [formGroup]="IniciarSesionForm" (ngSubmit)='IniciarSesion()'>
 <mat-grid-list  cols='1' rowHeight='5:1'>
     <mat-grid-tile>
         <mat-form-field appearance= 'outline' class="example-full-width">
@@ -16,7 +15,7 @@
     <mat-grid-tile>
         <mat-form-field appearance="outline">
             <mat-label>Contrasenia</mat-label>
-            <input matInput   [type]="hide ? 'password' : 'text'"> <!--[formControl]='contrasenia'-->
+            <input matInput [formControl]="clave"  [type]="hide ? 'password' : 'text'"> <!--[formControl]='contrasenia'-->
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -27,4 +26,5 @@
 [siteKey]="siteKey"
 formControlName="recaptcha">
 </ngx-recaptcha2>
+<button type="submit" [disabled]="emailFormControl.invalid || clave.invalid">SUBMIT</button>
 </form>

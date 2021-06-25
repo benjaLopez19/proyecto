@@ -1,6 +1,7 @@
 import { Component, OnInit,EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators,FormControl,FormsModule} from '@angular/forms';
 import {ApiService} from "../../services/api/api.service";
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 
 
@@ -15,10 +16,11 @@ export class InicioSesionComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  clave = new FormControl('',Validators.required);
   hide=true;
   siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
   IniciarSesionForm:FormGroup;
-  constructor(public fb: FormBuilder, private apiSerivce:ApiService) {
+  constructor(public fb: FormBuilder, private apiSerivce:ApiService, private storage:StorageService) {
     this.IniciarSesionForm = this.fb.group({
       recaptcha: ['', Validators.required]
     });
@@ -29,7 +31,12 @@ export class InicioSesionComponent implements OnInit {
   }
 
   IniciarSesion(){
-    console.log('1');
-    this.apiSerivce.header = 1;
+    let email = this.emailFormControl.value;
+    let claveAux = this.clave.value; 
+    this.apiSerivce.incioSesion(email,claveAux).subscribe(datos=>{
+      console.log(datos["token"]+" "+datos["admin"]);
+      this.storage.cargarDatos(datos["token"],datos["admin"]);
+    });
+    
   }
 }
