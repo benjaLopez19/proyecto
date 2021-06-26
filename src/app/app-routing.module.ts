@@ -7,7 +7,7 @@ import {SearchComponent} from './components/search/search.component'
 import {InterComponent} from './components/inter/inter.component'
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { ProductoComponent } from './components/producto/producto.component';
-
+import {InicioSesionComponent} from './components/inicio-sesion/inicio-sesion.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -17,7 +17,8 @@ const routes: Routes = [
   {path:'search',component:SearchComponent},
   {path:'inter',component:InterComponent},
   {path:'categorias',component:CategoriasComponent},
-  {path:'producto',component:ProductoComponent}
+  {path:'producto',component:ProductoComponent},
+  {path:'inicio-sesion',component:InicioSesionComponent}
 ];
 
 @NgModule({

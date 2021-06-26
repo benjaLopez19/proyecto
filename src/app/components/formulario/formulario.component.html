@@ -1,4 +1,3 @@
-<p>formulario works!</p>
 <form [formGroup]="RegistrarForm" (ngSubmit)="Registrarse()">
     <h2>Cuentanos quien eres</h2>
     <mat-grid-list cols="2" rowHeight="5:1">
@@ -47,7 +46,7 @@
             </mat-form-field><br>
             <mat-form-field appearance="fill">
                 <mat-label>Comuna, blu no me pegui</mat-label>
-                <mat-select  required>
+                <mat-select [formControl]='comuna' required>
                     <mat-option [value]="i" *ngFor="let i of comunas">{{i}}</mat-option>
                 </mat-select>
             </mat-form-field><br>
@@ -61,14 +60,17 @@
                 <mat-label>Contrasenia</mat-label>
                 <input matInput  [formControl]='contrasenia' [type]="hide ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+
+                    <!-- VER ESTA WEA -->
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <!-- VER ESTA WEA MIERDA-->
+
                 </button>
-              </mat-form-field>
-            
+            </mat-form-field>
            
 
         </mat-grid-tile>
-        <mat-grid-tile><!--contrasenia-->
+        <mat-grid-tile><!--Ccorreo electronico-->
             
             <mat-form-field appearance= 'outline' class="example-full-width">
                 <mat-label>Correo Electrónico</mat-label>
@@ -92,6 +94,9 @@
               </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
-    
+    <ngx-recaptcha2 #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha">
+    </ngx-recaptcha2>
     <button type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid "> KLASJDKLASDJKALSJDLSAKDJAKLSDJASKDLJ</button>
 </form>

@@ -27,6 +27,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { ProductoComponent } from './components/producto/producto.component';
+import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { ProductoComponent } from './components/producto/producto.component';
     UsuarioComponent,
     SearchComponent,
     InterComponent,
-    ProductoComponent
+    ProductoComponent,
+    InicioSesionComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { ProductoComponent } from './components/producto/producto.component';
     MatIconModule,
     MatSelectModule,
     FormsModule,
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

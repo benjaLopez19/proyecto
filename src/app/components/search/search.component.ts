@@ -22,12 +22,4 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  ngOnChanges(): void{
-    this.servicio.getBusqueda().subscribe(datos=>{
-      this.productos = datos;
-      console.log("entra en ngOnChanges");
-      console.log(datos);
-    });
-  }
-
 }
