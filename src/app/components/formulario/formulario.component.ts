@@ -157,7 +157,10 @@ export class FormularioComponent implements OnInit {
     +this.emailFormControl.value+' '
     +this.region.value+' '
     +this.comuna.value+' '); */
-
+    if(this.contrasenia.value!=this.contrasenia2.value){
+      
+    }
+    else{
     this.service.createUsuario(
       this.nombre.value,
       this.apellido.value,
@@ -176,13 +179,12 @@ export class FormularioComponent implements OnInit {
     });
     this.bool=true;
   }
+  }
 
   close(){
     this.bool=false;
   }
   
-  ValidarPass(){
-    
-  }
+
 }
 
