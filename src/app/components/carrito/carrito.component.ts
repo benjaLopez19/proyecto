@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
-
+  elementos:String[]=['gorro1','gorro2','gorro3'];
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
