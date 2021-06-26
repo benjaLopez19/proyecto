@@ -9,12 +9,6 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
   url="http://localhost:4000/";
-  producto:number=0;
-
-  getProductos():Observable<any>{
-    console.log("entra al servicio");
-    return this.http.get(`${this.url}getProductos`);    
-  }
 
   createUsuario(
     nombre:string,

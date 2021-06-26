@@ -65,6 +65,17 @@ server.get('/getProductos', (req, res) => {
         res.status(201).send(resultados);
     });
 });
+server.get('/getProductosById/:id', (req, res) => {
+    let id = req.params.id;
+    connection.query("SELECT * FROM productos where id=?", id, (req1, resultados) => {
+        if (resultados.length == 0) {
+            res.status(404).send({ "message": "NotFound" });
+        }
+        else {
+            res.status(201).send(resultados);
+        }
+    });
+});
 server.get('/getProductosByNombre/:nombre', (req, res) => {
     if (req.params.nombre === "NoUnObjeto") {
         res.send({ "message": "Introduzca busqueda" });
