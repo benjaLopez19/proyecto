@@ -30,6 +30,8 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AdminComponent } from './components/admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     InterComponent,
     ProductoComponent,
     InicioSesionComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSelectModule,
     FormsModule,
     NgxCaptchaModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
