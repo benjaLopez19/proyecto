@@ -3,12 +3,13 @@
 <div class="categorias">
 
 <ul class="categorias-list">
+ <li>
+     <label for="filtro">Filtro:</label>
+ </li>   
 <li>
-<button mat-button>Ofertas</button>
+<button mat-button>Todos los Productos</button>
 </li>
-<li>
-<button mat-button>Nuevos</button>    
-</li>
+
 <li>
 <button mat-button type="button"  (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
     aria-controls="collapseExample">
@@ -40,9 +41,12 @@
         <a [routerLink]="['/producto']" routerLinkActive="router-link-active">
         <li>
             <mat-card class="productos-card" *ngFor="let item of Datos">
-                <h3>Nombre: {{item.nombre}}</h3>
-                <h2>Precio: {{item.precio}}</h2>
-                <h2>Stock: {{item.stock}}</h2>
+                <div class="producto-descripcion">
+                <img src="http://media.steampowered.com/apps/440/icons/all_domination.e560de1da31e7984bbf067eac3a663d03175ca65.png" class="imagen-producto">   
+                <div>{{item.nombre}}</div>
+                <div>${{item.precio}}</div>
+                <div>Stock: {{item.stock}}</div>
+                </div>
             </mat-card>
         </li>
         </a>

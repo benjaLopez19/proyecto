@@ -30,4 +30,6 @@ export class ProductoComponent implements OnInit {
   }
   ]
 
+  public isCollapsed = true;
+
 }

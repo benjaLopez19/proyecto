@@ -1,7 +1,6 @@
 <button mat-raised-button [matMenuTriggerFor]="menu" class="categorias">Categorias</button>
 <mat-menu #menu="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Productos</button></a>
     <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
 </mat-menu>
 <mat-menu #mercs="matMenu">
@@ -44,7 +43,26 @@
                 </li>
             </ul>
         </mat-card>
-        <button mat-mini-fab><i class="fas fa-plus"></i></button>
+        <button mat-mini-fab class="adicionar" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"><i class="fas fa-plus"></i></button>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <mat-card>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="number" >
+                </mat-form-field>
+            
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Deja tu comentario:</mat-label>
+                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                </mat-form-field>
+            </form>
+            </mat-card>
+        </div>
     </div>
     
     </section>

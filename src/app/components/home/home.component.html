@@ -3,8 +3,7 @@
 <div id="categorias">   
 <button mat-raised-button [matMenuTriggerFor]="menu" class="categorias" >Categorias</button>
 <mat-menu #menu="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Productos</button></a>
     <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
 </mat-menu>
 <mat-menu #mercs="matMenu">
@@ -23,7 +22,7 @@
 
 </div>
 
-<label id="ofertas-label">Ofertas</label>
+<label id="ofertas-label">Nuestros Productos</label>
 <div id="ofertas">
     <ngb-carousel>
   <ng-template ngbSlide>
@@ -91,70 +90,3 @@
 
 <mat-divider></mat-divider>
 
-
-<label id="nuevos-label">Nuevos</label>
-<div id="nuevos">
-
-</div>
-    <ngb-carousel>
-        <ng-template ngbSlide>
-            <ul class="product-list">
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-            </ul>
-    
-        </ng-template>
-        <ng-template ngbSlide>
-            <ul class="product-list">
-                <li class="product-item">
-                    <mat-card class="product-card">
-                        
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-            </ul>
-        </ng-template>
-        <ng-template ngbSlide>
-            <ul class="product-list">
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-                <li class="product-item">
-                    <mat-card class="product-card">
-    
-                    </mat-card>
-                </li>
-            </ul>
-        </ng-template>
-    </ngb-carousel>
-
-</div>
