@@ -1,4 +1,3 @@
-
 import { Component, OnInit,EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators,FormControl,FormsModule} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -37,12 +36,14 @@ export class FormularioComponent implements OnInit {
   contrasenia2 = new FormControl('', [
     Validators.required
   ]);
+  
   comuna = new FormControl('', [
     Validators.required
   ]);
   recaptcha = new FormControl('', [
     Validators.required
   ])
+ 
   //validators
 
   
@@ -61,7 +62,25 @@ export class FormularioComponent implements OnInit {
 
     this.RegistrarForm = this.fb.group({
       recaptcha: ['', Validators.required]
-    });
+    },
+    { Validators : this.MustMatch('contrasenia', 'contrasenia2')}
+    );
+  }
+
+  MustMatch(pass:string, confirmp:string){
+    return(RegistrarForm:FormGroup)=>{
+      const control = RegistrarForm.controls[pass];
+      const matchingcontrol = RegistrarForm.controls[confirmp];
+      if(matchingcontrol.errors && !matchingcontrol.errors.MustMatch){
+        return
+      }
+      if(control.value !=matchingcontrol.value){
+        matchingcontrol.setErrors({MustMatch:true});
+      }
+      else{
+        matchingcontrol.setErrors(null);
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -138,7 +157,10 @@ export class FormularioComponent implements OnInit {
     +this.emailFormControl.value+' '
     +this.region.value+' '
     +this.comuna.value+' '); */
-
+    if(this.contrasenia.value!=this.contrasenia2.value){
+      
+    }
+    else{
     this.service.createUsuario(
       this.nombre.value,
       this.apellido.value,
@@ -157,11 +179,12 @@ export class FormularioComponent implements OnInit {
     });
     this.bool=true;
   }
+  }
 
   close(){
     this.bool=false;
   }
   
-  
+
 }
 

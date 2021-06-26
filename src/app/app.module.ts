@@ -29,6 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ProductoComponent } from './components/producto/producto.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     MatSelectModule,
     FormsModule,
     NgxCaptchaModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

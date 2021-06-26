@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
+import { Component, OnInit,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators,FormControl,FormsModule} from '@angular/forms';
 import {ApiService} from "../../services/api/api.service";
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -11,12 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio-sesion.component.scss']
 })
 export class InicioSesionComponent implements OnInit {
+  //VALIDATORS
   //error del email
+  sesion = false;
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
   clave = new FormControl('',Validators.required);
+
+  /****************/
+  completo:boolean=false; //completo es tu variable blu 
   hide=true;
   siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
   IniciarSesionForm:FormGroup;
@@ -25,10 +30,11 @@ export class InicioSesionComponent implements OnInit {
       recaptcha: ['', Validators.required]
     });
    }
-
+  
   ngOnInit(): void {
    
   }
+
 
   IniciarSesion(){
     let email = this.emailFormControl.value;
@@ -36,9 +42,17 @@ export class InicioSesionComponent implements OnInit {
     this.apiSerivce.incioSesion(email,claveAux).subscribe(datos=>{
       console.log(datos);
       console.log(datos["token"]+" "+datos["admin"]);
-      this.storage.cargarDatos(datos["token"],datos["admin"]);
-      this.router.navigate(['/home']);
+      if(this.completo){
+        this.storage.cargarDatos(datos["token"],datos["admin"]);
+        this.router.navigate(['/home']);
+        return;
+      }else{
+        this.storage.cargarDatosSession(datos["token"],datos["admin"]);
+        this.router.navigate(['/home']);
+      }
+      
     });
-    
+    this.sesion = true;
+   
   }
 }
