@@ -16,20 +16,42 @@
     </li>
     <li><!--icono de carrito de compras-->
         <a routerLink="carrito" routerLinkActive="router-link-active" >
-        <button mat-mini-fab color="primary" aria-label="Carrito de Compras">
+        <button mat-mini-fab color="primary" aria-label="Carrito de Compras" (click)="test()">
         <i class="fas fa-shopping-cart"></i>
         </button></a>
     </li>
     <li><!--icono de usario-->
             <a><i class="far fa-user"></i></a>
     </li>
-    <li><!--hipervinculo hacia formularios de usuario-->
+    <li *ngIf='this.storage.datos["admin"]==2'><!--hipervinculo hacia formularios de usuario-->
         <ul id='login'>
             <li><!--al inicio de sesion-->
                 <a routerLink="/inicio-sesion" routerLinkActive="router-link-active" >Iniciar Sesion</a>
             </li>
             <li><!--a registrarce-->
                 <a routerLink="/formulario" routerLinkActive="router-link-active" >Registrarse</a>
+            </li>
+        </ul>
+    </li>
+    <li *ngIf='this.storage.datos["admin"]==0'><!--hipervinculo hacia formularios de usuario-->
+        <ul id='login'>
+            <li><!--al inicio de sesion-->
+                <a><button (click)="cerrarSesion()"> Cerrar Sesion </button></a>
+            </li>
+            <li><!--a registrarce-->
+            </li>
+        </ul>
+    </li>
+
+    <li *ngIf='this.storage.datos["admin"]==1'><!--hipervinculo hacia formularios de usuario-->
+        <ul id='login'>
+            <li><!--al inicio de sesion-->
+                <a><button (click)="cerrarSesion()"> Cerrar Sesion </button></a>
+            </li>
+            <li><!--a registrarce-->
+            </li>
+            <li><!--SITIO ADMIN-->
+                <a><button (click)="admin()">Pagina administrador</button></a>
             </li>
         </ul>
     </li>

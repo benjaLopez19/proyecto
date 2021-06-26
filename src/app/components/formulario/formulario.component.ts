@@ -2,6 +2,9 @@
 import { Component, OnInit,EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators,FormControl,FormsModule} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Router } from '@angular/router';
+import {ApiService} from '../../services/api/api.service';
+
 
 
 
@@ -12,8 +15,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 })
 export class FormularioComponent implements OnInit {
  //error del email-validators
-
- 
+  bool = false;
+ //validators
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -24,9 +27,7 @@ export class FormularioComponent implements OnInit {
   apellido = new FormControl('', [
     Validators.required
   ]);
-  rut = new FormControl('', [
-    Validators.required
-  ]);
+  rut = new FormControl('', [Validators.required, Validators.pattern("[0-9]{1,10}\-[K|k|0-9]")]);
   direccion = new FormControl('', [
     Validators.required
   ]);
@@ -41,8 +42,10 @@ export class FormularioComponent implements OnInit {
   ]);
   recaptcha = new FormControl('', [
     Validators.required
-  ]);
-  /*error del email*/
+  ])
+  //validators
+
+  
   region = new FormControl('');
   //ocultar la pass
   hide =true;
@@ -54,7 +57,7 @@ export class FormularioComponent implements OnInit {
   comunas = ' '.split('.');
   RegistrarForm:FormGroup;
   siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, private service:ApiService, private router:Router) {
 
     this.RegistrarForm = this.fb.group({
       recaptcha: ['', Validators.required]
@@ -125,8 +128,7 @@ export class FormularioComponent implements OnInit {
 
 }
   Registrarse(){
-    
-    console.log(this.nombre.value+' '+this.apellido.value+' '+this.rut.value+' '+this.direccion.value+' '+this.direccion.value+' '+this.contrasenia.value+' '+this.contrasenia2.value+' '+this.emailFormControl.value);
+    /*
     console.log(this.nombre.value+' '
     +this.apellido.value+' '
     +this.rut.value+'  '
@@ -135,8 +137,31 @@ export class FormularioComponent implements OnInit {
     +this.contrasenia2.value+' '
     +this.emailFormControl.value+' '
     +this.region.value+' '
-    +this.comuna.value+' ');
+    +this.comuna.value+' '); */
+
+    this.service.createUsuario(
+      this.nombre.value,
+      this.apellido.value,
+      this.rut.value,
+      this.direccion.value,
+      this.contrasenia.value,
+      this.emailFormControl.value,
+      this.region.value,
+      this.comuna.value)
+      .subscribe(datos=>{
+        console.log(datos["message"]);
+        if(datos["message"]==="usuarioCreado"){
+          this.router.navigate(['/home']);
+          return;
+        }
+    });
+    this.bool=true;
   }
+
+  close(){
+    this.bool=false;
+  }
+  
   
 }
 

@@ -18,6 +18,9 @@ export class SearchService {
 
   getBusqueda():Observable<any>{
     //console.log(`${this.url}getProductosByNombre/${this.stringBusqueda}`);
+    if(this.stringBusqueda===""){
+      return this.http.get(`${this.url}getProductosByNombre/NoUnObjeto`);
+    }
     return this.http.get(`${this.url}getProductosByNombre/${this.stringBusqueda}`);
   }
 

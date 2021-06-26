@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,16 +16,36 @@ export class ApiService {
     return this.http.get(`${this.url}getProductos`);    
   }
 
-  createProducto(
+  createUsuario(
     nombre:string,
     apellido:string,
     rut:string,
     direccion:string,
     contrasenia:string,
-    email:string):Observable<any>{
+    email:string,
+    region:string,
+    comuna:string):Observable<any>{
 
-    const body = {};
-    return this.http.post(`${this.url}crearProducto`,body);
+    //FORMATO DEL REQ.BODY Y FORMA DEL METODO POST
+    const body = new HttpParams()
+      .set("nombre",nombre)
+      .set('apellido',apellido)
+      .set("rut",rut)
+      .set("direccion",direccion)
+      .set("clave",contrasenia)
+      .set("email",email)
+      .set("region",region)
+      .set("comuna",comuna);
+
+    return this.http.post(`${this.url}crearUsuario`,body.toString(),{headers:new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')});
+  }
+
+  incioSesion(email:string,clave:string):Observable<any>{
+    const body = new HttpParams()
+      .set("email",email)
+      .set("clave",clave);
+
+    return this.http.post(`${this.url}inicioSesion`,body.toString(),{headers:new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')});
   }
 
 }

@@ -15,10 +15,15 @@ export class SearchComponent implements OnInit {
   
   }
 
+  busqueda = true;
   ngOnInit(): void {
     this.servicio.getBusqueda().subscribe(datos=>{
       this.productos = datos;
       console.log(this.productos);
+      if(datos.message){
+        this.busqueda = false;
+        return;
+      }
     });
   }
 

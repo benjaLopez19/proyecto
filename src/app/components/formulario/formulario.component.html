@@ -1,5 +1,6 @@
 <form [formGroup]="RegistrarForm" (ngSubmit)="Registrarse()">
     <h2>Cuentanos quien eres</h2>
+    
     <mat-grid-list cols="2" rowHeight="5:1">
         <mat-grid-tile><!--izquierda-->
             <p> <!--Nombres-->
@@ -21,7 +22,7 @@
             <p> <!--Rut-->
                 <mat-form-field appearance="outline">
                     <mat-label>Rut</mat-label>
-                    <input matInput type='number' [formControl]='rut'>
+                    <input matInput [formControl]='rut'>
                 </mat-form-field>
             </p>
         </mat-grid-tile>
@@ -79,7 +80,7 @@
                   Please enter a valid email address
                 </mat-error>
                 <mat-error *ngIf="emailFormControl.hasError('required')">
-                  Email is <strong>required</strong>
+                   Debe ingresar su correo
                 </mat-error>
               </mat-form-field>
              
@@ -98,5 +99,9 @@
         [siteKey]="siteKey"
         formControlName="recaptcha">
     </ngx-recaptcha2>
-    <button type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid "> KLASJDKLASDJKALSJDLSAKDJAKLSDJASKDLJ</button>
+    <p *ngIf="bool">
+        <ngb-alert *ngIf="bool" type="danger" (closed)="close()">Usuario ya registrado</ngb-alert>
+    </p>
+    <button type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid || recaptcha.invalid"> KLASJDKLASDJKALSJDLSAKDJAKLSDJASKDLJ</button>
+
 </form>
