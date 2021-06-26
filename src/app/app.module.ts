@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { ProductoComponent } from './components/producto/producto.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -43,6 +44,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     UsuarioComponent,
     SearchComponent,
     InterComponent,
+    ProductoComponent,
     InicioSesionComponent,
   ],
   imports: [

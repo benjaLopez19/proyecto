@@ -3,25 +3,26 @@
 <div id="categorias">   
 <button mat-raised-button [matMenuTriggerFor]="menu" class="categorias" >Categorias</button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button>
-    <button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button>
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Ofertas</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="nuevos" class="categorias-button">Nuevos</button></a>
     <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
 </mat-menu>
 <mat-menu #mercs="matMenu">
-    <button mat-menu-item value="scout" class="categorias-button">Scout</button>
-    <button mat-menu-item value="soldier"class="categorias-button">Soldier</button>
-    <button mat-menu-item value="pyro"class="categorias-button">Pyro</button>
-    <button mat-menu-item value="heavy"class="categorias-button">Heavy</button>
-    <button mat-menu-item value="demoman"class="categorias-button">Demoman</button>
-    <button mat-menu-item value="engineer"class="categorias-button">Engineer</button>
-    <button mat-menu-item value="medic"class="categorias-button">Medic</button>
-    <button mat-menu-item value="sniper"class="categorias-button">Sniper</button>
-    <button mat-menu-item value="spy"class="categorias-button">Spy</button>
+    <a routerLink="/categorias"><button mat-menu-item value="scout" class="categorias-button">Scout</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="soldier"class="categorias-button">Soldier</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="pyro"class="categorias-button">Pyro</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="heavy"class="categorias-button">Heavy</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="demoman"class="categorias-button">Demoman</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="engineer"class="categorias-button">Engineer</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="medic"class="categorias-button">Medic</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="sniper"class="categorias-button">Sniper</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="spy"class="categorias-button">Spy</button></a>
 </mat-menu>
 
 <mat-divider></mat-divider>
 
 </div>
+
 <label id="ofertas-label">Ofertas</label>
 <div id="ofertas">
     <ngb-carousel>
