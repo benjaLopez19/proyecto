@@ -11,12 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio-sesion.component.scss']
 })
 export class InicioSesionComponent implements OnInit {
-  //error del email
+  //VALIDATORS
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
   clave = new FormControl('',Validators.required);
+  Recordarpass = new FormControl();
+  /****************/
+  completo:boolean=false; //completo es tu variable blu 
   hide=true;
   siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
   IniciarSesionForm:FormGroup;
