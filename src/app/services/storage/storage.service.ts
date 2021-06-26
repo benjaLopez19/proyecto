@@ -6,8 +6,10 @@ import { Session } from './session/session';
 })
 export class StorageService {
   localStorageService;
+  sessionStorageService;
   constructor(){
     this.localStorageService=localStorage;
+    this.sessionStorageService = sessionStorage;
   }
 
   rawDatos:string ="";
@@ -43,7 +45,26 @@ export class StorageService {
     }else{
       console.log("no hay datos");
     }
-  
+  }
+
+  //--------------SESION STORAGE-----------------------
+
+  cargarDatosSession(token:string, admin:number){
+    console.log("SESSION STORAGE");
+      let datos ={
+        token:`${token}`,
+        admin:admin
+      }
+      this.sessionStorageService.setItem('sesion',JSON.stringify(datos));
+      this.datos=datos;
+  }
+
+  borrarDatosSession(){
+    this.sessionStorageService.removeItem('sesion');
+    this.datos={
+      token:'',
+      admin:2
+    }
   }
 
 }

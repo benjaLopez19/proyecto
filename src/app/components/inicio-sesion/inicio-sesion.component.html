@@ -23,6 +23,10 @@
 [siteKey]="siteKey"
 formControlName="recaptcha">
 </ngx-recaptcha2>
-<mat-checkbox [formControl]="Recordarpass" [(ngModel)]="completo">Recordar Contraseña</mat-checkbox>
+
+<p *ngIf="sesion">
+  Usuario o contraseña incorrectos.
+</p>
 <button type="submit" [disabled]="emailFormControl.invalid || clave.invalid">SUBMIT</button>
 </form>
+<mat-checkbox [(ngModel)]="completo">Recordar Contraseña</mat-checkbox>

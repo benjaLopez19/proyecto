@@ -31,10 +31,6 @@ export class HeaderComponent implements OnInit {
     this.servicio.valor(this.search.value);
   }
 
-  test(){
-    console.log(this.storage.datos["admin"]);
-  }
-
   cerrarSesion(){
     this.storage.borrarDatos();
   }
