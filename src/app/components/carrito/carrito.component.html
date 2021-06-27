@@ -1,24 +1,23 @@
-<p>carrito works!</p>
 <h1>CARRITO DE COMPRAS</h1>
-<mat-list >
-    <mat-list-item>
-        <mat-button-toggle-group mat-list-item name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle value="bold">item</mat-button-toggle>
-            <mat-button-toggle value="italic">agregar</mat-button-toggle>
-            <mat-button-toggle value="underline">X</mat-button-toggle>
-          </mat-button-toggle-group>
-    </mat-list-item>
+<mat-list *ngFor="let item of productos">
     <mat-list-item> <mat-button-toggle-group mat-list-item name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="bold">Bold</mat-button-toggle>
-        <mat-button-toggle value="italic">Italic</mat-button-toggle>
-        <mat-button-toggle value="underline">Underline</mat-button-toggle>
+        <mat-button-toggle value="bold">{{item.nombre}}</mat-button-toggle>
+        <mat-button-toggle value="italic">{{item.precio}}</mat-button-toggle>
+
+        <mat-button-toggle value="bold" (click)="sustraer(item.idProducto)">-</mat-button-toggle>
+       <mat-button-toggle value="bold">{{item.cantidad}}</mat-button-toggle>
+        <mat-button-toggle value="italic" (click)="sumar(item.idProducto)">+</mat-button-toggle>
+
+        <mat-button-toggle value="underline" (click)="quitar(item.idProducto)">Quitar</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-list-item>
-    <mat-list-item> <mat-button-toggle-group mat-list-item name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="bold">Bold</mat-button-toggle>
-        <mat-button-toggle value="italic">Italic</mat-button-toggle>
-        <mat-button-toggle value="underline">Underline</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-list-item>
-</mat-list><!-- AQUI BLUCITO TE DEJO LA LISTA CON LOS BOTONES, YO SUPONGO QUE DEBE SER UN ngFor para dejar como "automatico"
+
+</mat-list>
+<button *ngIf="boton" (click)="comprar()">Comprar</button>
+
+<p *ngIf="bool">No hay productos en el carrito</p>
+<p *ngIf="sesion">Inicie sesion para comprar</p>
+<p *ngIf="compra">Compra realizada con exito, asignado id:{{idCompra}}</p>
+
+<!-- AQUI BLUCITO TE DEJO LA LISTA CON LOS BOTONES, YO SUPONGO QUE DEBE SER UN ngFor para dejar como "automatico"
 el tema de que aparezcan botones,-->

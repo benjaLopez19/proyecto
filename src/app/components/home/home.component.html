@@ -36,14 +36,20 @@
             </button >
         </li>
         <li class="product-item">
-            <mat-card class="product-card">
-                <p>{{productos[1].nombre}}</p>
-            </mat-card>
+            <button (click)='productoSeleccionado(productos[1].id)'>
+                <mat-card class="product-card"> 
+                    <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                    <p>{{productos[1].nombre}}</p>  
+                </mat-card>
+            </button >
         </li>
         <li class="product-item">
-            <mat-card class="product-card">
-                <p>{{productos[2].nombre}}</p>
-            </mat-card>
+            <button (click)='productoSeleccionado(productos[2].id)'>
+                <mat-card class="product-card"> 
+                    <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                    <p>{{productos[2].nombre}}</p>  
+                </mat-card>
+            </button >
         </li>
     </ul>
    
@@ -51,33 +57,48 @@
   <ng-template ngbSlide>
 <ul class="product-list">
     <li class="product-item">
-        <mat-card class="product-card">
-
-        </mat-card>
+        <button (click)='productoSeleccionado(productos[3].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[3].nombre}}</p>  
+            </mat-card>
+        </button >
     </li>
     <li class="product-item">
-        <mat-card class="product-card">
-
-        </mat-card>
+        <button (click)='productoSeleccionado(productos[4].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[4].nombre}}</p>  
+            </mat-card>
+        </button >
     </li>
     <li class="product-item">
-        <mat-card class="product-card">
-
-        </mat-card>
+        <button (click)='productoSeleccionado(productos[5].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[5].nombre}}</p>  
+            </mat-card>
+        </button >
     </li>
 </ul>
   </ng-template>
   <ng-template ngbSlide>
 <ul class="product-list">
     <li class="product-item">
-        <mat-card class="product-card">
-
-        </mat-card>
+        <button (click)='productoSeleccionado(productos[6].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[6].nombre}}</p>  
+            </mat-card>
+        </button >
     </li>
     <li class="product-item">
-        <mat-card class="product-card">
-
-        </mat-card>
+        <button (click)='productoSeleccionado(productos[0].id)'>
+            <mat-card class="product-card"> 
+                <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                <p>{{productos[0].nombre}}</p>  
+            </mat-card>
+        </button >
     </li>
     <li class="product-item">
         <mat-card class="product-card">

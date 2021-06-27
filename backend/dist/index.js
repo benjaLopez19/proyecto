@@ -33,7 +33,7 @@ connection.connect((error) => {
 //server.use(cors);
 server.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "*");
     next();
 });
 //----------------------------JWT--VERIFY-------------------------------------
@@ -288,10 +288,41 @@ server.get('/getPedidos', (req, res) => {
         res.send(resultados);
     });
 });
-server.post('/generarPedido', (req, res) => {
+server.post('/generarPedido', rutasSegura, (req, res) => {
     let idProductos = req.body.productos;
     let idUsuario = req.body.usuario;
     connection.query("INSERT INTO pedidos(idProductos,idUsuario)VALUES('" + idProductos + "','" + idUsuario + "')", (req1, resultados) => {
+        //INSERT INTO `pedidos` (`idPedido`, `idProductos`, `idUsuario`) VALUES (NULL, '[{\"id\":1,\"cantidad\":2},{\"id\":2,\"cantidad\":4}]', 'donwea@live.cl');
+        //connection.query("INSERT INTO pedidos(idProductos,idUsuario)VALUES('{\"id\":2,\"cantidad\":2}','1')",(req1:any,resultados:any)=>{
+        //{"id":1,"cantidad":2},{"id":2,"cantidad":4}
+        if (resultados == undefined) {
+            res.status(409).send({ "message": "error" });
+        }
+        else {
+            res.status(201).send(resultados);
+        }
+    });
+});
+//------------CALIFICACION-----------------
+server.post('/crearCalificacion', rutasSegura, (req, res) => {
+    let idProducto = req.body.idProducto;
+    let idUsuario = req.body.idUsuario;
+    let calificacion = req.body.calificacion;
+    connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('" + idUsuario + "','" + idProducto + "','" + calificacion + "')", (req1, resultados) => {
+        if (resultados == undefined) {
+            res.status(409).send({ "mensaje": "Usuario ya califico este producto" });
+        }
         res.send(resultados);
+    });
+});
+server.post('/getCalificacionById', (req, res) => {
+    let idProducto = req.body.idProducto;
+    connection.query("SELECT * FROM calificacion WHERE idProducto='" + idProducto + "'", (req1, resultados) => {
+        let aux = 0;
+        for (let i = 0; i < resultados.length; i++) {
+            aux = aux + resultados[i]["calificacion"];
+        }
+        aux = aux / (resultados.length);
+        res.send({ "calificacion": aux });
     });
 });

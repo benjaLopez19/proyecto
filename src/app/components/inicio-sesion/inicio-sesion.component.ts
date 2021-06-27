@@ -43,11 +43,11 @@ export class InicioSesionComponent implements OnInit {
       console.log(datos);
       console.log(datos["token"]+" "+datos["admin"]);
       if(this.completo){
-        this.storage.cargarDatos(datos["token"],datos["admin"]);
+        this.storage.cargarDatos(datos["token"],email,datos["admin"]);
         this.router.navigate(['/home']);
         return;
       }else{
-        this.storage.cargarDatosSession(datos["token"],datos["admin"]);
+        this.storage.cargarDatosSession(datos["token"],email,datos["admin"]);
         this.router.navigate(['/home']);
       }
       

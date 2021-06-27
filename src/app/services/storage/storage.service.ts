@@ -15,13 +15,15 @@ export class StorageService {
   rawDatos:string ="";
   datos = {
     token:"",
+    email:"",
     admin:2
   };
 
-  cargarDatos(token:string,admin:number){
+  cargarDatos(token:string,email:string,admin:number){
     console.log("cargar datos");
     let datos = {
       token:`${token}`,
+      email:`${email}`,
       admin:admin
     }
     console.log(datos);
@@ -34,8 +36,10 @@ export class StorageService {
     this.localStorageService.removeItem('sesion');
     this.datos = {
       token:'',
+      email:'',
       admin:2
     }
+    this.borrarDatosSession();
   }
 
   getDatos(){
@@ -49,10 +53,11 @@ export class StorageService {
 
   //--------------SESION STORAGE-----------------------
 
-  cargarDatosSession(token:string, admin:number){
+  cargarDatosSession(token:string, email:string, admin:number){
     console.log("SESSION STORAGE");
       let datos ={
         token:`${token}`,
+        email:`${email}`,
         admin:admin
       }
       this.sessionStorageService.setItem('sesion',JSON.stringify(datos));
@@ -63,6 +68,7 @@ export class StorageService {
     this.sessionStorageService.removeItem('sesion');
     this.datos={
       token:'',
+      email:'',
       admin:2
     }
   }

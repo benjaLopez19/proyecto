@@ -38,7 +38,7 @@ connection.connect((error:any)=>{
 //server.use(cors);
 server.use(function(req:any, res:any, next:any) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "*");
     next();
 });
 
@@ -326,14 +326,48 @@ server.get('/getPedidos',(req:any,res:any)=>{
     });
 });
 
-server.post('/generarPedido',(req:any,res:any)=>{
+server.post('/generarPedido',rutasSegura,(req:any,res:any)=>{
+    
     let idProductos = req.body.productos;
     let idUsuario = req.body.usuario;
     connection.query("INSERT INTO pedidos(idProductos,idUsuario)VALUES('"+idProductos+"','"+idUsuario+"')",(req1:any,resultados:any)=>{
+    //INSERT INTO `pedidos` (`idPedido`, `idProductos`, `idUsuario`) VALUES (NULL, '[{\"id\":1,\"cantidad\":2},{\"id\":2,\"cantidad\":4}]', 'donwea@live.cl');
+    //connection.query("INSERT INTO pedidos(idProductos,idUsuario)VALUES('{\"id\":2,\"cantidad\":2}','1')",(req1:any,resultados:any)=>{
+    //{"id":1,"cantidad":2},{"id":2,"cantidad":4}
+        if(resultados==undefined){
+            res.status(409).send({"message":"error"});
+        }else{
+            res.status(201).send(resultados);
+        }
+    });
+});
+
+//------------CALIFICACION-----------------
+
+server.post('/crearCalificacion',rutasSegura,(req:any,res:any)=>{
+    let idProducto = req.body.idProducto;
+    let idUsuario = req.body.idUsuario;
+    let calificacion = req.body.calificacion;
+    connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('"+idUsuario+"','"+idProducto+"','"+calificacion+"')",(req1:any,resultados:any)=>{
+        
+        if(resultados==undefined){
+            res.status(409).send({"mensaje":"Usuario ya califico este producto"});
+        }
         res.send(resultados);
     });
 });
 
+server.post('/getCalificacionById',(req:any,res:any)=>{
+    let idProducto = req.body.idProducto;
+    connection.query("SELECT * FROM calificacion WHERE idProducto='"+idProducto+"'",(req1:any,resultados:any)=>{
+        let aux=0;
+        for(let i=0; i<resultados.length;i++){
+            aux = aux+resultados[i]["calificacion"];
+        }
+        aux = aux/(resultados.length);
+        res.send({"calificacion":aux});
+    });
+});
 
 
 

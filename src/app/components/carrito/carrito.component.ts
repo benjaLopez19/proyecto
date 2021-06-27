@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
+import { Carrito } from 'src/app/interfaces/carrito';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-carrito',
@@ -7,8 +10,77 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarritoComponent implements OnInit {
   elementos:String[]=['gorro1','gorro2','gorro3'];
-  constructor() { }
+  constructor(public carritoService:CarritoService, private storage:StorageService) { }
 
+  bool = false;
+  sesion = false;
+  compra = false;
+  boton = true;
+
+  productos:Array<Carrito>=[];
+  idCompra:number = 0;
   ngOnInit(): void {
+    this.productos = this.carritoService.productosCarrito;
+
+    if(this,this.productos.length == 0){
+      this.bool = true;
+      this.boton = false;
+    }
   }
+
+  sustraer(id:number){
+    console.log(id);
+    for(let i = 0;i<this.productos.length;i++){
+      if(this.productos[i].idProducto == id){
+        if(this.productos[i].cantidad>1){
+          this.productos[i].cantidad-1;
+          this.carritoService.sustraer(id);
+        }
+      }
+    }
+  }
+
+  sumar(id:number){
+    console.log(id);
+    for(let i = 0;i<this.productos.length;i++){
+      if(this.productos[i].idProducto == id){
+        this.productos[i].cantidad+1;
+        this.carritoService.sumar(id);
+      }
+    }
+  }
+
+  quitar(id:number){
+    for(let i=0 ; i<this.productos.length;i++){
+      if(this.productos[i].idProducto==id){
+        this.productos.splice(i,1);
+        this.carritoService.quitar(id);
+        if(this.productos.length==0){
+          this.bool=true;
+          this.boton=false;
+        }
+      }
+    }
+  }
+
+  comprar(){
+    let aux = this.productos.length;
+    let email = this.storage.datos.email;
+    let token = this.storage.datos.token;
+
+
+    if(email.length>0){
+      this.carritoService.comprar(this.productos,email,token).subscribe(datos=>{
+        console.log(datos);
+        this.idCompra = datos["insertId"];
+        this.compra=true;
+        this.boton=false;
+        this.productos = [];
+        this.carritoService.productosCarrito = [];
+      });
+    }else{
+      this.sesion=true;
+    }
+  }
+
 }
