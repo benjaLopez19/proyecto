@@ -73,6 +73,19 @@ server.get('/getProductos',(req:any,res:any)=>{
     });
 });
 
+server.get('/getProductosByCategoria/:categoria',(req:any,res:any)=>{
+    let categoria = req.params.categoria;
+
+    connection.query("SELECT * FROM productos where categoria=?",categoria,(req1:any,resultados:any)=>{
+        if(resultados.length == 0){
+            res.status(404).send({"message":"NotFound"});
+        }else{
+            console.log(resultados);
+            res.status(201).send(resultados);
+        }
+    });
+});
+
 server.get('/getProductosById/:id',(req:any,res:any)=>{
     let id = req.params.id;
     connection.query("SELECT * FROM productos where id=?",id,(req1:any,resultados:any)=>{

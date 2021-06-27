@@ -27,14 +27,14 @@ export class AdminComponent implements OnInit {
   //usuarios:any;
   ngOnInit(): void {
     let token = this.storage.datos.token;
-    console.log(token);
 
     this.service.getPedidos(token).subscribe(datos=>{
-      console.log(datos);
-      this.pedidos = datos;
-      console.log(this.pedidos[0].idProductos);
+      this.pedidos = datos; //Arreglo de pedidos, cada pedido tiene su id y un arreglo con un producto y su cantidad
+      console.log(this.pedidos);
+
       let aux = this.pedidos[0].idProductos;
-      console.log(JSON.parse(aux));
+      console.log(JSON.parse(aux)); //con JSON.parse pasa el json que esta dentro del arreglo a un arreglo funcional, cuya estructura es {"id":number,"cantidad":number}
+                                    //siendo en este caso aux un dato del arreglo de pedidos y aux2 su correspondiente arreglo de productos
       let aux2= JSON.parse(aux);
       console.log(aux2[0].id);
     
@@ -59,6 +59,5 @@ export class AdminComponent implements OnInit {
   //array de los objetos
   dataSource = this.usuarios;
   dataSource2 = this.productos;
-
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { Producto } from 'src/app/interfaces/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,12 @@ export class ApiService {
     headers= headers.append('access-token',token);
 
     return this.http.get(`${this.url}getPedidos`,{'headers':headers});
+  }
+
+  getProductosCategoria(categoria:string):Observable<any>{
+    //console.log(categoria);
+    console.log(`${this.url}getProductosByCategoria/${categoria}`);
+    return this.http.get(`${this.url}getProductosByCategoria/${categoria}`);
   }
 
 }

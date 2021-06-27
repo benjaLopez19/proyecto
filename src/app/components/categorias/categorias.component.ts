@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/interfaces/producto';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-categorias',
@@ -8,9 +9,15 @@ import { Producto } from 'src/app/interfaces/producto';
 })
 export class CategoriasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ApiService) { }
+  productos:Array<Producto> = [];
 
   ngOnInit(): void {
+    this.service.getProductosCategoria("hat").subscribe(datos=>{
+      this.productos = datos;
+      console.log("Productos:");
+      console.log(this.productos);
+    });
   }
 
   Datos:Array<Producto> = [{
