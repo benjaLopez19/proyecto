@@ -38,20 +38,18 @@
             <li><!--al inicio de sesion-->
                 <a><button (click)="cerrarSesion()"> Cerrar Sesion </button></a>
             </li>
-            <li><!--a registrarce-->
-            </li>
         </ul>
     </li>
 
     <li *ngIf='this.storage.datos["admin"]==1'><!--hipervinculo hacia formularios de usuario-->
         <ul id='login'>
-            <li><!--al inicio de sesion-->
-                <a><button (click)="cerrarSesion()"> Cerrar Sesion </button></a>
+            <li>
+                <a><button (click)="cerrarSesion()" routerLink="/home"> Cerrar Sesion </button></a>
             </li>
-            <li><!--a registrarce-->
+            <li>
             </li>
             <li><!--SITIO ADMIN-->
-                <a><button (click)="admin()">Pagina administrador</button></a>
+                <a><button routerLink='/admin'>Pagina administrador</button></a>
             </li>
         </ul>
     </li>

@@ -42,4 +42,19 @@ export class ApiService {
     return this.http.post(`${this.url}inicioSesion`,body.toString(),{headers:new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')});
   }
 
+  getUsuarios(token:string):Observable<any>{
+    let headers = new HttpHeaders();
+    headers= headers.append('access-token',token);
+
+    return this.http.get(`${this.url}getUsuarios`,{'headers':headers});
+  }
+
+  getPedidos(token:string):Observable<any>{
+
+    let headers = new HttpHeaders();
+    headers= headers.append('access-token',token);
+
+    return this.http.get(`${this.url}getPedidos`,{'headers':headers});
+  }
+
 }

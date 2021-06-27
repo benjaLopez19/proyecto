@@ -152,9 +152,8 @@ server.put('/modificarProducto',(req:any,res:any)=>{
 
 //--------------------------USUARIOS-----------------------------------------
 
-server.get('/getUsuarios',(req:any,res:any)=>{
+server.get('/getUsuarios',rutasSegura,(req:any,res:any)=>{
     connection.query("SELECT * FROM usuarios",(req1:any,resultados:any)=>{
-        console.log(resultados);
         res.send(resultados);
     });
 });
@@ -317,7 +316,7 @@ server.delete('/borrarComentario',(req:any,res:any)=>{
 });
 
 //---------------PEDIDOS-------------------
-server.get('/getPedidos',(req:any,res:any)=>{
+server.get('/getPedidos',rutasSegura,(req:any,res:any)=>{
     connection.query("SELECT * FROM pedidos",(req1:any,resultados:any)=>{
         console.log(resultados);
         let aux = resultados;
