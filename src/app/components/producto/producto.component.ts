@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/prueba';
+import { SearchService } from 'src/app/services/search/search.service';
+import { Producto } from 'src/app/interfaces/producto';
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -8,9 +11,18 @@ import { Usuario } from 'src/app/interfaces/prueba';
 
 export class ProductoComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service:SearchService) { }
+  producto:Array<Producto>=[];
+  bool=false;
   ngOnInit(): void {
+    this.service.getBusquedaById().subscribe(datos=>{
+      this.producto = datos;
+      console.log(this.producto);
+      if(this.producto[0].stock<0){
+        this.bool = true;
+      }
+    });
+    
   }
 
   usuarios:Array<Usuario> =[{
@@ -31,5 +43,9 @@ export class ProductoComponent implements OnInit {
   ]
 
   public isCollapsed = true;
+
+  carrito(){
+    console.log(this.producto[0].stock);
+  }
 
 }

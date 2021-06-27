@@ -55,6 +55,7 @@ export class FormularioComponent implements OnInit {
   regiones = 'Región de Arica y Parinacota.Región de Tarapacá.Región de Antofagasta.Región de Atacama.Región de Coquimbo.Región de Valparaíso.Región Metropolitana de Santiago.Región del Libertador General Bernardo O’Higgins.Región del Maule.Región del Ñuble.Región del Biobío.Región de La Araucanía.Región de Los Ríos.Región de Los Lagos.Región de Aysén del General Carlos Ibáñez del Campo.Región de Magallanes y la Antártica Chilena'.split('.');
   /*******************************/
   /*newValue='';*/
+  registrado:boolean=true;
   comunas = ' '.split('.');
   RegistrarForm:FormGroup;
   siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
@@ -158,7 +159,10 @@ export class FormularioComponent implements OnInit {
     +this.region.value+' '
     +this.comuna.value+' '); */
     if(this.contrasenia.value!=this.contrasenia2.value){
-      
+      console.log('contrasenias diferentes, no ingresado'+' '+this.contrasenia.value+' '+this.contrasenia2.value+' ');
+      this.registrado=false;
+      this.contrasenia.setValue('');
+      this.contrasenia2.setValue('');
     }
     else{
     this.service.createUsuario(
@@ -178,13 +182,15 @@ export class FormularioComponent implements OnInit {
         }
     });
     this.bool=true;
+    console.log('contrasenias iguales'+' '+this.contrasenia.value+' '+this.contrasenia2.value+' ');
+    this.registrado=true;
   }
   }
 
   close(){
     this.bool=false;
   }
-  
+
 
 }
 

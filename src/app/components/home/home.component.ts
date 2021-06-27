@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import {Producto} from '../../interfaces/producto';
-import {ApiService} from '../../services/api/api.service';
+import { SearchService } from 'src/app/services/search/search.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {ApiService} from '../../services/api/api.service';
 export class HomeComponent implements OnInit {
 
   productos:Array<Producto>=[];
-  constructor(private servicio:ApiService) { }
+  constructor(private servicio:SearchService, private router:Router) { }
 
   ngOnInit(): void {
     this.servicio.getProductos().subscribe(datos=>{
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
 
   productoSeleccionado(id:number){
     console.log(id);
-    this.servicio.producto = id;
+    this.servicio.idBusqueda = id;
+    this.router.navigate(['/producto']);
   }
   
   

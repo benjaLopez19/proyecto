@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   searchProduct(){
-    this.servicio.valor(this.search.value);
+    this.servicio.valorString(this.search.value);
   }
 
   cerrarSesion(){

@@ -32,6 +32,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AdminComponent } from './components/admin/admin.component';
 import { MatTableModule } from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     NgxCaptchaModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,11 +22,11 @@
     </div>
     <div class="detalles">
         <mat-card class="detalles-card">
-            <h1>Nombre de producto: Ghastly Gibus</h1>
-            <p>Descripción</p>
-            <p>Precio</p>
-            <p>Stock</p>
-            <button mat-button>Añadir al Carro</button>
+            <h1>Nombre de producto: {{producto[0].nombre}}</h1>
+            <p>Descripción: {{producto[0].descripcion }} </p>
+            <p>Precio: {{producto[0].precio }}</p>
+            <p>Stock: {{producto[0].stock }}</p>
+            <button mat-button [disabled]="bool" (click)="carrito()" >Añadir al Carro</button>
         </mat-card>
     </div>
     
@@ -44,6 +44,7 @@
             </ul>
         </mat-card>
         <button mat-mini-fab class="adicionar" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"><i class="fas fa-plus"></i></button>
+
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
             <mat-card>
             <form class="example-form">
@@ -63,6 +64,7 @@
             </form>
             </mat-card>
         </div>
+        
     </div>
     
     </section>
