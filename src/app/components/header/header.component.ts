@@ -5,6 +5,7 @@ import {SearchService} from '../../services/search/search.service'
 import {Producto} from '../../interfaces/producto';
 import {ApiService} from '../../services/api/api.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 
 
 @Component({
@@ -19,9 +20,9 @@ export class HeaderComponent implements OnInit {
   productos:Producto|undefined;
   aux =0;
 
-  constructor(private router:Router, private servicio:SearchService, private api:ApiService, public storage:StorageService) { 
+  constructor(private router:Router, private servicio:SearchService, private api:ApiService, public storage:StorageService, public carrito:CarritoService) { 
   } 
-  
+
   ngOnInit(): void {
     console.log('ngOnInit');
     this.storage.getDatos();
@@ -33,11 +34,6 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion(){
     this.storage.borrarDatos();
-  }
-
-  admin(){
-    console.log("El admin cuando");
-    
   }
 
 

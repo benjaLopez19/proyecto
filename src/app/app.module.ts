@@ -34,6 +34,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -76,6 +77,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatTableModule,
     MatListModule,
     MatButtonToggleModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
