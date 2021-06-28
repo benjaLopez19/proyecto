@@ -11,7 +11,6 @@ export interface Usuario {
 
 export interface Producto{
   id:string;
-  nombre:string;
   cantidad:string;
 }
 
@@ -50,12 +49,12 @@ export class AdminComponent implements OnInit {
   ];
 
   productos: Producto[] = [
-    {"id":"1","nombre":"Ghastly Gibus", "cantidad":"1"}
+    {"id":"1", "cantidad":"1"}
   ];
 
  //columnas de las tablas
   displayedColumns1: string[] = ['email', 'nombre', 'apellido', 'rut'];
-  displayedColumns2: string[] = ['id','nombre','cantidad'];
+  displayedColumns2: string[] = ['id','cantidad'];
   //array de los objetos
   dataSource = this.usuarios;
   dataSource2 = this.productos;

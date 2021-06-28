@@ -17,110 +17,20 @@ export class CategoriasComponent implements OnInit {
       this.productos = datos;
       console.log("Productos:");
       console.log(this.productos);
+  
     });
   }
 
-  Datos:Array<Producto> = [{
-    "id" : 1,
-    "stock": 6,
-    "calificacion": 4.4,
-    "nombre": "Poop 1",
-    "descripcion":"really good hat",
-    "categoria": "scout",
-    "precio": 5.99
-  },
-  {
-    "id": 2,
-    "stock": 6,
-    "calificacion": 4.5,
-    "nombre": "Poop 2",
-    "descripcion": "really good hat",
-    "categoria": "soldier",
-    "precio": 5.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
-  },
-  {
-    "id": 3,
-    "stock": 5,
-    "calificacion": 4.4,
-    "nombre": "Poop 3",
-    "descripcion": "really good hat",
-    "categoria": "pyro",
-    "precio": 6.99
+  showAll(){
+
   }
 
-];
+  filtrarCategorias(value:any){
+    this.service.getProductosCategoria(value).subscribe(datos=>{
+      window.location.reload();
+      this.productos = datos;
+    });
+  }
 
   public isCollapsed = true;
 

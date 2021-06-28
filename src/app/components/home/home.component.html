@@ -1,24 +1,15 @@
 
-
 <div id="categorias">   
-<button mat-raised-button [matMenuTriggerFor]="menu" class="categorias" >Categorias</button>
+<button mat-raised-button [matMenuTriggerFor]="menu" class="categorias">Categorias</button>
 <mat-menu #menu="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Productos</button></a>
-    <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Todos los Productos</button></a>
+    <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Tipos</button>
 </mat-menu>
 <mat-menu #mercs="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="scout" class="categorias-button">Scout</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="soldier"class="categorias-button">Soldier</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="pyro"class="categorias-button">Pyro</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="heavy"class="categorias-button">Heavy</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="demoman"class="categorias-button">Demoman</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="engineer"class="categorias-button">Engineer</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="medic"class="categorias-button">Medic</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="sniper"class="categorias-button">Sniper</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="spy"class="categorias-button">Spy</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="hats" class="categorias-button">Hats</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="cosmetics"class="categorias-button">Cosmetics</button></a>
 </mat-menu>
 
-<mat-divider></mat-divider>
 
 </div>
 

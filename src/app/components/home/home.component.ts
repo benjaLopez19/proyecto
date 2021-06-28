@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
     this.servicio.getProductos().subscribe(datos=>{
       this.productos = datos;
       console.log(this.productos);
+      console.log("entra aqui 001");
     });
   }
 

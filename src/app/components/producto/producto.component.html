@@ -1,19 +1,4 @@
-<button mat-raised-button [matMenuTriggerFor]="menu" class="categorias">Categorias</button>
-<mat-menu #menu="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="producto" class="categorias-button">Productos</button></a>
-    <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Mercenarios</button>
-</mat-menu>
-<mat-menu #mercs="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="scout" class="categorias-button">Scout</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="soldier" class="categorias-button">Soldier</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="pyro" class="categorias-button">Pyro</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="heavy" class="categorias-button">Heavy</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="demoman" class="categorias-button">Demoman</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="engineer" class="categorias-button">Engineer</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="medic" class="categorias-button">Medic</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="sniper" class="categorias-button">Sniper</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="spy" class="categorias-button">Spy</button></a>
-</mat-menu>
+
 
 <div class="producto">
     <section>
@@ -26,7 +11,7 @@
             <p>Descripción: {{producto[0].descripcion }} </p>
             <p>Precio: {{producto[0].precio }}</p>
             <p>Stock: {{producto[0].stock }}</p>
-            <button mat-button [disabled]="bool" (click)="carrito()" >Añadir al Carro</button>
+            <button mat-fab [disabled]="bool" (click)="carrito()" ><i id="icon" class="fas fa-cart-plus"></i></button>
         </mat-card>
     </div>
     
@@ -46,23 +31,52 @@
         <button mat-mini-fab class="adicionar" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"><i class="fas fa-plus"></i></button>
 
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <mat-card>
-            <form class="example-form">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Usuario</mat-label>
-                    <input matInput placeholder="">
-                </mat-form-field>
+            <div class="seccion-comentario">
+            <mat-card class="seccion-comentario-card">
+            <form [formGroup]="form_comentario" (ngSubmit)="enviarComentario()">
 
-                <mat-form-field>
-                    <input type="number" >
-                </mat-form-field>
+                <ul class="add-comentario">
+                <!-- aqui el usuario ingresa su nombre -->
+
             
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Deja tu comentario:</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            <li>
+                <mat-label>Calificación:</mat-label>
+            </li>    
+
+                <li>
+                <mat-form-field>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" formControlName="calificacion" required />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" formControlName="calificacion" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" formControlName="calificacion" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" formControlName="calificacion"/>
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" formControlName="calificacion"/>
+                        <label for="star1" title="text">1 star</label>
+                    </div>
                 </mat-form-field>
+                </li>
+
+                <!--y aqui ingresa su comentario-->
+                <li><mat-label>Deja tu Comentario:</mat-label></li>
+
+                <li>
+                    <textarea  placeholder="Ingresa tu Comentario aqui" formControlName="comentario" class="input" required></textarea>
+                </li>
+
+                <li>
+                <button mat-button type="submit">Enviar</button>
+                </li>
+
+            </ul>
             </form>
             </mat-card>
+        
+             </div>
+        
         </div>
         
     </div>
