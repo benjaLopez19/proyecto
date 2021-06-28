@@ -67,12 +67,12 @@ server.get('/getProductos', (req, res) => {
 });
 server.get('/getProductosByCategoria/:categoria', (req, res) => {
     let categoria = req.params.categoria;
+    console.log(categoria);
     connection.query("SELECT * FROM productos where categoria=?", categoria, (req1, resultados) => {
         if (resultados.length == 0) {
-            res.status(404).send({ "message": "NotFound" });
+            res.send({ "message": "NotFound" });
         }
         else {
-            console.log(resultados);
             res.status(201).send(resultados);
         }
     });
@@ -217,22 +217,17 @@ server.post('/inicioSesion', (req, res) => {
             //res.send(resultados);
         }
     });
-    /*
-    //console.log(req.body.usuario+" "+req.body.contrasena);
-    if(req.body.usuario === "asfo" && req.body.contrasena === "holamundo") {
-        const payload = {
-            check:  true
-        };
-        const token = jwt.sign(payload, server.get('token'), {
-            expiresIn: 1440
-        });
-        res.json({
-            mensaje: 'Autenticación correcta',
-            token: token
-        });
-    } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos"})
-    } */
+});
+server.get('/getUsuario/:email', (req, res) => {
+    let email = req.params.email;
+    connection.query("SELECT nombre, apellido FROM usuarios WHERE email=?", email, (req1, resultados) => {
+        if (resultados.length == 0) {
+            res.status(404).send({ "message": "Usuario no encontrado" });
+        }
+        else {
+            res.status(201).send(resultados);
+        }
+    });
 });
 //---------------CATEGORIA--------------------------
 server.get('/getCategorias', (req, res) => {
@@ -261,21 +256,20 @@ server.delete('/borrarCategoria', (req, res) => {
 });
 //-------------------------------comentario-------------------------------
 server.get('/getComentarios', (req, res) => {
-    connection.query("SELECT * FROM comentario", (req1, resultados) => {
+    connection.query("SELECT nombreUsuario, contenido FROM comentario", (req1, resultados) => {
         res.send(resultados);
     });
 });
-server.get('/getComentariosByProduct', (req, res) => {
-    let producto = req.body.prodKey;
+server.get('/getComentariosByProduct/:prodKey', (req, res) => {
+    let producto = req.params.prodKey;
     connection.query("SELECT contenido,nombreUsuario FROM comentario WHERE productoKey=?", producto, (req1, resultado) => {
-        console.log(resultado);
         res.send(resultado);
     });
 });
-server.post('/crearComentario', (req, res) => {
+server.post('/crearComentario', rutasSegura, (req, res) => {
     let productoKey = req.body.productoKey;
     let usuarioKey = req.body.usuarioKey;
-    let contenido = req.body.contenido;
+    let contenido = req.body.comentario;
     let nombre = req.body.nombreUsuario;
     console.log(req.body);
     connection.query("INSERT INTO comentario(productoKey,usuarioKey,contenido,nombreUsuario)VALUES('" + productoKey + "','" + usuarioKey + "','" + contenido + "','" + nombre + "')", (req1, resultados) => {
@@ -319,6 +313,8 @@ server.post('/crearCalificacion', rutasSegura, (req, res) => {
     let idProducto = req.body.idProducto;
     let idUsuario = req.body.idUsuario;
     let calificacion = req.body.calificacion;
+    console.log('estoy calificando');
+    console.log(req.body);
     connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('" + idUsuario + "','" + idProducto + "','" + calificacion + "')", (req1, resultados) => {
         if (resultados == undefined) {
             res.status(409).send({ "mensaje": "Usuario ya califico este producto" });
@@ -326,9 +322,10 @@ server.post('/crearCalificacion', rutasSegura, (req, res) => {
         res.send(resultados);
     });
 });
-server.post('/getCalificacionById', (req, res) => {
-    let idProducto = req.body.idProducto;
+server.get('/getCalificacionById/:idProducto', (req, res) => {
+    let idProducto = req.params.idProducto;
     connection.query("SELECT * FROM calificacion WHERE idProducto='" + idProducto + "'", (req1, resultados) => {
+        console.log(resultados);
         let aux = 0;
         for (let i = 0; i < resultados.length; i++) {
             aux = aux + resultados[i]["calificacion"];

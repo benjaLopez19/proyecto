@@ -12,6 +12,7 @@ export class SearchService {
  
   stringBusqueda:string|undefined;
   idBusqueda:number = -1;
+  stringCategoria:string= "default";
 
   valorString(string:string){
     this.stringBusqueda = string;

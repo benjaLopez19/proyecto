@@ -4,7 +4,10 @@ import { SearchService } from 'src/app/services/search/search.service';
 import { Producto } from 'src/app/interfaces/producto';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { Carrito } from 'src/app/interfaces/carrito';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { ApiService } from 'src/app/services/api/api.service';
+import { Comentario } from 'src/app/interfaces/comentario';
 
 @Component({
   selector: 'app-producto',
@@ -16,20 +19,30 @@ import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 export class ProductoComponent implements OnInit {
 
   form_comentario:FormGroup;
+  comentario:AbstractControl;
+  calificacion:AbstractControl;
 
-  constructor(private fb:FormBuilder, private service:SearchService, private carritoService:CarritoService) { 
+  id:number;
+  nombre:string="";
+
+  constructor(private fb:FormBuilder, private service:SearchService, private carritoService:CarritoService, private storageService:StorageService, private apiService:ApiService) { 
     /*Constructor del formulario al inicializarse el componente.*/
     this.form_comentario=this.fb.group({
-      usuario:['',[Validators.required]],
       calificacion:['',[Validators.required]],
       comentario:['',[Validators.required]]
     })
+    this.comentario = this.form_comentario.controls["comentario"];
+    this.id=service.idBusqueda;
+    this.calificacion = this.form_comentario.controls["calificacion"];
   }
-
+  usuario = this.storageService.datos["email"];
   public isCollapsed = true; //esto es del colapse del comentario
 
+  comentarioEntrantes:Array<Comentario> = [];
   producto:Array<Producto>=[];
+  calificacionEntrante:number = 0;
   bool=false;
+
   ngOnInit(): void {
     this.service.getBusquedaById().subscribe(datos=>{
       this.producto = datos;
@@ -38,27 +51,21 @@ export class ProductoComponent implements OnInit {
         this.bool = true;
       }
     });
+
+    this.apiService.getNombreUsuario(this.usuario).subscribe(datos=>{
+      this.nombre = datos[0]["nombre"]+" "+datos[0]["apellido"];
+    });
     
-  }
+    this.apiService.getComentarios(this.id).subscribe(datos=>{
+      this.comentarioEntrantes = datos;
+      console.log(this.comentarioEntrantes);
+    });
 
-  usuarios:Array<Usuario> =[{
-    "nombre":"goober",
-    "calificacion":5,
-    "comentario":"muy buen objeto mi loco"
-  },
-  {
-    "nombre":"weegum",
-    "calificacion": 5,
-    "comentario": "Completamente excelente"
-  },
-  { 
-    "nombre":"blucillo", 
-    "calificacion": 5,
-    "comentario": "Would recomend"
+    this.apiService.getCalificacion(this.id).subscribe(datos=>{
+      console.log(datos);
+      this.calificacionEntrante = datos["calificacion"];
+    });
   }
-  ]
-
-  
 
   carrito(){
     let aux:Carrito = {
@@ -71,7 +78,27 @@ export class ProductoComponent implements OnInit {
   }
 
   enviarComentario(){
+    console.log(this.calificacion.value);
+    console.log(this.form_comentario.get("comentario")?.value);
+    console.log("abstract control:"+this.comentario.value);
+    console.log(this.usuario);
+    let token = this.storageService.datos["token"];
+    if(this.usuario.length == 0){
+      console.log("se necesita usuario");
+    }else{
+      console.log('se envian los resultados');
+      //(idProducto:number, comentario:string, calificacion:number, email:string, token:string, nombreUsuario:string
+      this.apiService.createComentario(this.id, this.comentario.value, this.calificacion.value, this.usuario, token, this.nombre).subscribe(datos=>{
+        console.log(datos);
+      });
 
+      if(this.calificacion.value){
+        this.apiService.createCalificacion(this.calificacion.value, this.id, this.usuario, token).subscribe(datos=>{
+          console.log(datos);
+        });
+      }
+    }
+    
   }
 
 }

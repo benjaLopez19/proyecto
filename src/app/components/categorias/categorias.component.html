@@ -7,7 +7,7 @@
      <label for="filtro">Filtro:</label>
  </li>   
 <li>
-<button mat-button (onclick)="showAll()">Todos los Productos</button>
+    <button mat-button (click)="showAll()">Todos los Productos</button>
 </li>
 
 <li>
@@ -19,8 +19,10 @@
     <div class="card">
         <div class="card-body">
             <ul class="categorias-merc-list">
-                <li><button mat-button id="hats" value="hats" class="categorias-button" >Hats</button> </li>
-                <li><button mat-button id="cosmetics" value="cosmetics" class="categorias-button" >Cosmetics</button></li>
+                <li><button mat-button id="hats" value="hats" class="categorias-button" (click)="filtrarCategorias('hat')" >Hats</button> </li>
+                <li><button mat-button id="cosmetics" value="cosmetics" class="categorias-button" (click)="filtrarCategorias('cosmetic')">Cosmetics</button></li>
+                <li><button mat-button id="crates" value="crates" class="categorias-button" (click)="filtrarCategorias('crate')">Crates</button></li>
+                <li><button mat-button id="crates" value="crates" class="categorias-button" (click)="filtrarCategorias('key')">Keys</button></li>
             </ul>
         </div>
     </div>
@@ -29,21 +31,25 @@
 </ul>
  </div>
 
-<div class="productos">
+<div class="productos" *ngIf="busqueda" >
     <ul class="productos-list">
-        <a [routerLink]="['/producto']" routerLinkActive="router-link-active">
         <li>
             <mat-card class="productos-card" *ngFor="let item of productos">
+            <a><button (click)='productoSeleccionado(item.id)'>
                 <div class="producto-descripcion">
-                <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
-                <div>{{item.nombre}}</div>
-                <div>${{item.precio}}</div>
-                <div>Stock: {{item.stock}}</div>
+                    <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
+                    <div>{{item.nombre}}</div>
+                    <div>${{item.precio}}</div>
+                    <div>Stock: {{item.stock}}</div>
                 </div>
+            </button></a>
             </mat-card>
         </li>
-        </a>
     </ul>
-
 </div>
+
+<div *ngIf="!busqueda">
+    Actualmente no hay productos en esta categoria.
+</div>
+
 </section>

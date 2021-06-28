@@ -2,12 +2,14 @@
 <div id="categorias">   
 <button mat-raised-button [matMenuTriggerFor]="menu" class="categorias">Categorias</button>
 <mat-menu #menu="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button">Todos los Productos</button></a>
+    <a routerLink="/categorias"><button mat-menu-item value="ofertas" class="categorias-button" (click)="categoriaSeleccionada('default')">Todos los Productos</button></a>
     <button mat-menu-item [matMenuTriggerFor]="mercs" class="categorias-button">Tipos</button>
 </mat-menu>
 <mat-menu #mercs="matMenu">
-    <a routerLink="/categorias"><button mat-menu-item value="hats" class="categorias-button">Hats</button></a>
-    <a routerLink="/categorias"><button mat-menu-item value="cosmetics"class="categorias-button">Cosmetics</button></a>
+    <a routerLink="/categorias" (click)="categoriaSeleccionada('hat')"><button mat-menu-item value="hats" class="categorias-button">Hats</button></a>
+    <a routerLink="/categorias" (click)="categoriaSeleccionada('cosmetic')"><button mat-menu-item value="cosmetics"class="categorias-button">Cosmetics</button></a>
+    <a routerLink="/categorias" (click)="categoriaSeleccionada('crate')"><button mat-menu-item value="crates" class="categorias-button">Crates</button></a>
+    <a routerLink="/categorias" (click)="categoriaSeleccionada('key')"><button mat-menu-item value="keys"class="categorias-button">keys</button></a>
 </mat-menu>
 
 

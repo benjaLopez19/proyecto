@@ -64,4 +64,49 @@ export class ApiService {
     return this.http.get(`${this.url}getProductosByCategoria/${categoria}`);
   }
 
+  getComentarios(idProducto:number):Observable<any>{
+    return this.http.get(`${this.url}getComentariosByProduct/${idProducto}`);
+  }
+
+  createComentario(idProducto:number, comentario:string, calificacion:number, email:string, token:string, nombreUsuario:string):Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.append('access-token',token);
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const bodyComentario = new HttpParams()
+      .set("usuarioKey",email)
+      .set("productoKey",idProducto.toString())
+      .set("comentario",comentario)
+      .set('nombreUsuario',nombreUsuario);
+
+    
+    
+    return this.http.post(`${this.url}crearComentario`,bodyComentario , {'headers':headers});
+  }
+
+  createCalificacion(calificacion:number, idProducto:number, email:string, token:string):Observable<any>{
+
+    let headers = new HttpHeaders();
+    headers = headers.append('access-token',token);
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const bodyCalificacion = new HttpParams()
+      .set("idProducto",idProducto.toString())
+      .set("calificacion", calificacion.toString())
+      .set("idUsuario",email);
+
+    
+    return this.http.post(`${this.url}crearCalificacion`,bodyCalificacion,{'headers':headers});
+
+  }
+
+  getCalificacion(id:number):Observable<any>{
+    return this.http.get(`${this.url}getCalificacionById/${id}`);
+  }
+
+  getNombreUsuario(email:string):Observable<any>{
+    return this.http.get(`${this.url}getUsuario/${email}`);
+  }
+
+
 }

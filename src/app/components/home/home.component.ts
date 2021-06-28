@@ -28,6 +28,12 @@ export class HomeComponent implements OnInit {
     this.servicio.idBusqueda = id;
     this.router.navigate(['/producto']);
   }
+
+  categoriaSeleccionada(categoria:string){
+    console.log(categoria);
+    console.log(this.servicio.stringCategoria);
+    this.servicio.stringCategoria = categoria;
+  }
   
   
 

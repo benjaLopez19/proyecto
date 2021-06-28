@@ -75,12 +75,11 @@ server.get('/getProductos',(req:any,res:any)=>{
 
 server.get('/getProductosByCategoria/:categoria',(req:any,res:any)=>{
     let categoria = req.params.categoria;
-
+    console.log(categoria);
     connection.query("SELECT * FROM productos where categoria=?",categoria,(req1:any,resultados:any)=>{
         if(resultados.length == 0){
-            res.status(404).send({"message":"NotFound"});
+            res.send({"message":"NotFound"});
         }else{
-            console.log(resultados);
             res.status(201).send(resultados);
         }
     });
@@ -238,23 +237,17 @@ server.post('/inicioSesion', (req:any,res:any)=>{
             //res.send(resultados);
         }
     });
+});
 
-    /*
-    //console.log(req.body.usuario+" "+req.body.contrasena);
-    if(req.body.usuario === "asfo" && req.body.contrasena === "holamundo") {
-        const payload = {
-            check:  true
-        };
-        const token = jwt.sign(payload, server.get('token'), {
-            expiresIn: 1440
-        });
-        res.json({
-            mensaje: 'Autenticación correcta',
-            token: token
-        });
-    } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos"})
-    } */
+server.get('/getUsuario/:email', (req:any,res:any)=>{
+    let email = req.params.email;
+    connection.query("SELECT nombre, apellido FROM usuarios WHERE email=?",email,(req1:any,resultados:any)=>{
+        if(resultados.length == 0){
+            res.status(404).send({"message":"Usuario no encontrado"});
+        }else{
+            res.status(201).send(resultados);
+        }
+    });
 });
 
 //---------------CATEGORIA--------------------------
@@ -293,23 +286,22 @@ server.delete('/borrarCategoria',(req:any,res:any)=>{
 //-------------------------------comentario-------------------------------
 
 server.get('/getComentarios',(req:any,res:any)=>{
-    connection.query("SELECT * FROM comentario",(req1:any,resultados:any)=>{
+    connection.query("SELECT nombreUsuario, contenido FROM comentario",(req1:any,resultados:any)=>{
         res.send(resultados);
     });
 });
 
-server.get('/getComentariosByProduct',(req:any,res:any)=>{
-    let producto = req.body.prodKey;
+server.get('/getComentariosByProduct/:prodKey',(req:any,res:any)=>{
+    let producto = req.params.prodKey;
     connection.query("SELECT contenido,nombreUsuario FROM comentario WHERE productoKey=?",producto,(req1:any,resultado:any)=>{
-        console.log(resultado);
         res.send(resultado);
     });
 });
 
-server.post('/crearComentario',(req:any,res:any)=>{
+server.post('/crearComentario',rutasSegura,(req:any,res:any)=>{
     let productoKey = req.body.productoKey;
     let usuarioKey = req.body.usuarioKey;
-    let contenido = req.body.contenido;
+    let contenido = req.body.comentario;
     let nombre = req.body.nombreUsuario;
 
     console.log(req.body);
@@ -360,6 +352,8 @@ server.post('/crearCalificacion',rutasSegura,(req:any,res:any)=>{
     let idProducto = req.body.idProducto;
     let idUsuario = req.body.idUsuario;
     let calificacion = req.body.calificacion;
+    console.log('estoy calificando');
+    console.log(req.body);
     connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('"+idUsuario+"','"+idProducto+"','"+calificacion+"')",(req1:any,resultados:any)=>{
         
         if(resultados==undefined){
@@ -369,9 +363,10 @@ server.post('/crearCalificacion',rutasSegura,(req:any,res:any)=>{
     });
 });
 
-server.post('/getCalificacionById',(req:any,res:any)=>{
-    let idProducto = req.body.idProducto;
+server.get('/getCalificacionById/:idProducto',(req:any,res:any)=>{
+    let idProducto = req.params.idProducto;
     connection.query("SELECT * FROM calificacion WHERE idProducto='"+idProducto+"'",(req1:any,resultados:any)=>{
+        console.log(resultados);
         let aux=0;
         for(let i=0; i<resultados.length;i++){
             aux = aux+resultados[i]["calificacion"];
