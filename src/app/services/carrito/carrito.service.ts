@@ -69,4 +69,18 @@ export class CarritoService {
     
     return this.http.post(`${this.url}generarPedido`,body,{'headers':headers});
   }
+
+  revisarStock(id:number){
+    for(let i=0;i<this.productosCarrito.length;i++){
+      if(this.productosCarrito[i].idProducto == id){
+        if(this.productosCarrito[i].stock - this.productosCarrito[i].cantidad < 1){
+          return false
+        }
+        else{
+          return true;
+        }
+      }
+    }
+    return true;
+  }
 }

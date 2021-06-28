@@ -341,6 +341,17 @@ server.post('/generarPedido',rutasSegura,(req:any,res:any)=>{
         if(resultados==undefined){
             res.status(409).send({"message":"error"});
         }else{
+            let aux = JSON.parse(idProductos);
+            let stock:number = -1;
+            console.log(aux);
+            //[ { id: 1, cantidad: 23 }, { id: 2, cantidad: 4 } ]
+            for(let i = 0; i<aux.length;i++){
+                let auxStock = aux[i]["cantidad"];
+                let auxID = aux[i]["id"];
+                connection.query('UPDATE productos set stock =stock-? where id =?',[auxStock,auxID], (req2:any,res2:any)=>{
+                    console.log(res2);
+                });
+            }
             res.status(201).send(resultados);
         }
     });
@@ -355,11 +366,14 @@ server.post('/crearCalificacion',rutasSegura,(req:any,res:any)=>{
     console.log('estoy calificando');
     console.log(req.body);
     connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('"+idUsuario+"','"+idProducto+"','"+calificacion+"')",(req1:any,resultados:any)=>{
-        
         if(resultados==undefined){
-            res.status(409).send({"mensaje":"Usuario ya califico este producto"});
+            console.log('wea');
+            connection.query("UPDATE calificacion SET calificacion=? WHERE idUsuario=? AND idProducto=?",[calificacion,idUsuario,idProducto],(req2:any,resultados2:any)=>{
+                res.send(resultados2);
+            });
+        }else{
+            res.send(resultados);
         }
-        res.send(resultados);
     });
 });
 
@@ -376,5 +390,7 @@ server.get('/getCalificacionById/:idProducto',(req:any,res:any)=>{
     });
 });
 
-
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
