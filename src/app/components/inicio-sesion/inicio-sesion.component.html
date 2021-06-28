@@ -1,4 +1,5 @@
 <div class='background'>
+  <h1>Iniciar Sesion</h1>
 <form [formGroup]="IniciarSesionForm" (ngSubmit)='IniciarSesion()'>
 <mat-grid-list  cols='1' rowHeight='5:1'>
     <mat-grid-tile>
@@ -32,4 +33,7 @@ formControlName="recaptcha" >
 <button class='submit' type="submit" [disabled]="emailFormControl.invalid || clave.invalid">Iniciar sesion</button>
 </form>
 <mat-checkbox class='recordar'[(ngModel)]="completo">¿Quieres que guardemos tu contraseña para un eventual inicio de sesion?</mat-checkbox>
+<p> </p><br>
+<p></p>
+
 </div>
