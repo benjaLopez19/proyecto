@@ -12,7 +12,10 @@
             <p>Precio: {{producto[0].precio }}</p>
             <p>Stock: {{producto[0].stock }}</p>
             <p>Calificacion: {{calificacionEntrante}} Estrellas</p> 
-            <button mat-fab [disabled]="bool" (click)="carrito()" ><i id="icon" class="fas fa-cart-plus"></i></button>
+            <div>
+                <button mat-fab [disabled]="bool" (click)="carrito()" ><i id="icon" class="fas fa-cart-plus"></i></button>
+                <p *ngIf="bool">Producto no disponible</p>
+            </div>
         </mat-card>
     </div>
     
