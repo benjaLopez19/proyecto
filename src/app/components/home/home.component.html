@@ -86,7 +86,7 @@
         </button >
     </li>
     <li class="product-item">
-        <button (click)='productoSeleccionado(productos[0].id)'>
+        <button (click)='productoSeleccionado(productos[7].id)'>
             <mat-card class="product-card"> 
                 <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
                 <p>{{productos[0].nombre}}</p>  
@@ -95,7 +95,12 @@
     </li>
     <li class="product-item">
         <mat-card class="product-card">
-
+            <button (click)='productoSeleccionado(productos[8].id)'>
+                <mat-card class="product-card"> 
+                    <img src="../../../assets/img/ghostlyGibus.png" alt="Gibus">
+                    <p>{{productos[0].nombre}}</p>  
+                </mat-card>
+            </button >
         </mat-card>
     </li>
 </ul>

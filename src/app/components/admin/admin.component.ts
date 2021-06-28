@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { Router } from '@angular/router';
 
 export interface Usuario {
   email: string;
@@ -21,11 +22,14 @@ export interface Producto{
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private service:ApiService, private storage:StorageService) { }
+  constructor(private service:ApiService, private storage:StorageService, private router:Router) { }
   pedidos:any;
   //usuarios:any;
   ngOnInit(): void {
     let token = this.storage.datos.token;
+    if(token.length==0)
+      this.router.navigate(['/home']);
+
 
     this.service.getPedidos(token).subscribe(datos=>{
       this.pedidos = datos; //Arreglo de pedidos, cada pedido tiene su id y un arreglo con un producto y su cantidad

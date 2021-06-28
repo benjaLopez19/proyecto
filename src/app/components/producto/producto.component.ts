@@ -43,6 +43,8 @@ export class ProductoComponent implements OnInit {
   calificacionEntrante:number = 0;
   bool=false;
   sesion = false;
+  comentBool=false;
+  calificacionesBool = false;
 
   ngOnInit(): void {
     this.service.getBusquedaById().subscribe(datos=>{
@@ -60,11 +62,16 @@ export class ProductoComponent implements OnInit {
     this.apiService.getComentarios(this.id).subscribe(datos=>{
       this.comentarioEntrantes = datos;
       console.log(this.comentarioEntrantes);
+      if(this.comentarioEntrantes.length==0)
+        this.comentBool = true;
+
     });
 
     this.apiService.getCalificacion(this.id).subscribe(datos=>{
       console.log(datos);
       this.calificacionEntrante = datos["calificacion"];
+      if(this.calificacionEntrante == null)
+        this.calificacionesBool = true;
     });
   }
 

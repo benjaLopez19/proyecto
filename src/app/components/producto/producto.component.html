@@ -11,7 +11,8 @@
             <p>Descripción: {{producto[0].descripcion }} </p>
             <p>Precio: {{producto[0].precio }}</p>
             <p>Stock: {{producto[0].stock }}</p>
-            <p>Calificacion: {{calificacionEntrante}} Estrellas</p> 
+            <p *ngIf="!calificacionesBool">Calificacion: {{calificacionEntrante}} Estrellas</p> 
+            <p *ngIf="calificacionesBool">Calificacion: Este producto no ha sido calificado</p> 
             <div>
                 <button mat-fab [disabled]="bool" (click)="carrito()" ><i id="icon" class="fas fa-cart-plus"></i></button>
                 <p *ngIf="bool">Producto no disponible</p>
@@ -30,6 +31,7 @@
                      </mat-card>
                 </li>
             </ul>
+            <p *ngIf="comentBool">Este producto no tiene comentarios</p>
         </mat-card>
         <button mat-mini-fab class="adicionar" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"><i class="fas fa-plus"></i></button>
 
