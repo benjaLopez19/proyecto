@@ -304,6 +304,17 @@ server.post('/generarPedido', rutasSegura, (req, res) => {
             res.status(409).send({ "message": "error" });
         }
         else {
+            let aux = JSON.parse(idProductos);
+            let stock = -1;
+            console.log(aux);
+            //[ { id: 1, cantidad: 23 }, { id: 2, cantidad: 4 } ]
+            for (let i = 0; i < aux.length; i++) {
+                let auxStock = aux[i]["cantidad"];
+                let auxID = aux[i]["id"];
+                connection.query('UPDATE productos set stock =stock-? where id =?', [auxStock, auxID], (req2, res2) => {
+                    console.log(res2);
+                });
+            }
             res.status(201).send(resultados);
         }
     });
@@ -317,9 +328,14 @@ server.post('/crearCalificacion', rutasSegura, (req, res) => {
     console.log(req.body);
     connection.query("INSERT INTO calificacion(idUsuario,idProducto,calificacion)VALUES('" + idUsuario + "','" + idProducto + "','" + calificacion + "')", (req1, resultados) => {
         if (resultados == undefined) {
-            res.status(409).send({ "mensaje": "Usuario ya califico este producto" });
+            console.log('wea');
+            connection.query("UPDATE calificacion SET calificacion=? WHERE idUsuario=? AND idProducto=?", [calificacion, idUsuario, idProducto], (req2, resultados2) => {
+                res.send(resultados2);
+            });
         }
-        res.send(resultados);
+        else {
+            res.send(resultados);
+        }
     });
 });
 server.get('/getCalificacionById/:idProducto', (req, res) => {
@@ -334,3 +350,6 @@ server.get('/getCalificacionById/:idProducto', (req, res) => {
         res.send({ "calificacion": aux });
     });
 });
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

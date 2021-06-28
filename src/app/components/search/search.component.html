@@ -1,4 +1,4 @@
-<table *ngIf="busqueda==true">
+<!--<table *ngIf="busqueda==true">
     <tr>
         <th>Nombre</th>
         <th>descripcion</th>
@@ -11,9 +11,31 @@
         <td>{{item.stock}}</td>
         <td>{{item.precio}}</td>
     </tr>
-</table>
+</table>-->
 
 <p *ngIf="busqueda==false">
    <ngb-alert type="danger">No se encuentran resultados de la busqueda</ngb-alert>
 </p>
-  
+
+
+<div *ngIf="busqueda==true">
+<ul class='cartas' *ngFor="let item of productos">
+    <li>
+        <mat-card class='Cardproducto'>
+            <mat-card-header class='cardHeader'>
+                <mat-card-title>{{item.nombre}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item>{{item.descripcion}}</mat-list-item>
+                    <mat-divider [inset]="true" [vertical]="true"></mat-divider>
+                    <mat-list-item>items en stock: {{item.stock}}</mat-list-item>
+                    <mat-divider [inset]="true" [vertical]="true"></mat-divider>
+                    <mat-list-item>${{item.precio}} clp</mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </li>
+</ul>
+</div>

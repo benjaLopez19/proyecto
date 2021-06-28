@@ -42,7 +42,6 @@ export class CategoriasComponent implements OnInit {
   }
 
   productoSeleccionado(id:number){
-    console.log(id);
     this.searchService.idBusqueda = id;
     this.router.navigate(['/producto']);
   }

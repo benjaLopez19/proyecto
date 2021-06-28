@@ -42,12 +42,15 @@ export class ProductoComponent implements OnInit {
   producto:Array<Producto>=[];
   calificacionEntrante:number = 0;
   bool=false;
+  sesion = false;
+  comentBool=false;
+  calificacionesBool = false;
 
   ngOnInit(): void {
     this.service.getBusquedaById().subscribe(datos=>{
       this.producto = datos;
       console.log(this.producto);
-      if(this.producto[0].stock<0){
+      if(this.producto[0].stock<1){
         this.bool = true;
       }
     });
@@ -59,11 +62,16 @@ export class ProductoComponent implements OnInit {
     this.apiService.getComentarios(this.id).subscribe(datos=>{
       this.comentarioEntrantes = datos;
       console.log(this.comentarioEntrantes);
+      if(this.comentarioEntrantes.length==0)
+        this.comentBool = true;
+
     });
 
     this.apiService.getCalificacion(this.id).subscribe(datos=>{
       console.log(datos);
       this.calificacionEntrante = datos["calificacion"];
+      if(this.calificacionEntrante == null)
+        this.calificacionesBool = true;
     });
   }
 
@@ -72,9 +80,14 @@ export class ProductoComponent implements OnInit {
       idProducto:this.producto[0].id,
       nombre:this.producto[0].nombre,
       precio:this.producto[0].precio,
-      cantidad:1
+      cantidad:1,
+      stock:this.producto[0].stock
     }
-    this.carritoService.productoAlCarrito(aux);
+    let auxStockSearch = this.producto[0].id;
+    console.log(auxStockSearch);
+    if(this.carritoService.revisarStock(auxStockSearch)){
+      this.carritoService.productoAlCarrito(aux);
+    }
   }
 
   enviarComentario(){
@@ -85,18 +98,32 @@ export class ProductoComponent implements OnInit {
     let token = this.storageService.datos["token"];
     if(this.usuario.length == 0){
       console.log("se necesita usuario");
+      this.sesion = true;
     }else{
       console.log('se envian los resultados');
       //(idProducto:number, comentario:string, calificacion:number, email:string, token:string, nombreUsuario:string
-      this.apiService.createComentario(this.id, this.comentario.value, this.calificacion.value, this.usuario, token, this.nombre).subscribe(datos=>{
-        console.log(datos);
-      });
 
-      if(this.calificacion.value){
+      if(this.calificacion.value && this.comentario.value){
+        console.log("primer if");
         this.apiService.createCalificacion(this.calificacion.value, this.id, this.usuario, token).subscribe(datos=>{
           console.log(datos);
         });
+
+        this.apiService.createComentario(this.id, this.comentario.value, this.calificacion.value, this.usuario, token, this.nombre).subscribe(datos=>{
+          console.log(datos);
+        });
+      }else if(this.calificacion.value){
+        console.log("segundo if");
+        this.apiService.createCalificacion(this.calificacion.value, this.id, this.usuario, token).subscribe(datos=>{
+          console.log(datos);
+        });
+      }else if(this.comentario.value){
+        console.log("tercer if");
+        this.apiService.createComentario(this.id, this.comentario.value, this.calificacion.value, this.usuario, token, this.nombre).subscribe(datos=>{
+          console.log(datos);
+        });
       }
+
     }
     
   }

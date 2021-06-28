@@ -16,7 +16,7 @@
     </li>
     <li><!--icono de carrito de compras-->
         <a routerLink="carrito" routerLinkActive="router-link-active" >
-        <button mat-mini-fab color="primary" aria-label="Carrito de Compras">
+        <button mat-mini-fab color="primary" aria-label="Carrito de Compras" matBadge={{carrito.productosCarrito.length}}>
         <i class="fas fa-shopping-cart"></i>
         </button></a>
     </li>
