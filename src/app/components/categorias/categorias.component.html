@@ -38,9 +38,9 @@
             <a><button (click)='productoSeleccionado(item.id)'>
                 <div class="producto-descripcion">
                     <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
-                    <div>{{item.nombre}}</div>
-                    <div>${{item.precio}}</div>
-                    <div>Stock: {{item.stock}}</div>
+                    <div class="nombre-item">{{item.nombre}}</div>
+                    <div class="precio-item">${{item.precio}}</div>
+                    <div class="stock-item">Stock: {{item.stock}}</div>
                 </div>
             </button></a>
             </mat-card>

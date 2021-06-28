@@ -23,40 +23,54 @@ export class AdminComponent implements OnInit {
 
   constructor(private service:ApiService, private storage:StorageService) { }
   pedidos:any;
-  //usuarios:any;
+  usuarios:any;
+  dataSource:any;
+  dataSource2:any;
   ngOnInit(): void {
     let token = this.storage.datos.token;
 
     this.service.getPedidos(token).subscribe(datos=>{
       this.pedidos = datos; //Arreglo de pedidos, cada pedido tiene su id y un arreglo con un producto y su cantidad
       console.log(this.pedidos);
-
-      let aux = this.pedidos[0].idProductos;
-      console.log(JSON.parse(aux)); //con JSON.parse pasa el json que esta dentro del arreglo a un arreglo funcional, cuya estructura es {"id":number,"cantidad":number}
-                                    //siendo en este caso aux un dato del arreglo de pedidos y aux2 su correspondiente arreglo de productos
-      let aux2= JSON.parse(aux);
-      console.log(aux2[0].id);
+      let aux:any;
+      let aux2:any = [];
+      let aux3:any =[];
+      //sacando informacion del arreglo que llega
+      for(let i=0;i<this.pedidos.length;i++){
+         aux = this.pedidos[i].idProductos;
+          aux2[0][i] = JSON.parse(aux);
+          aux2[1][i] = this.pedidos[i].idPedido;
+      }
+      
+      console.log(aux2);
     
+      //desmantelando el array de objetos para guardar todo en un mismo arreglo
+      let k=0;
+      for(let i=0;i<aux2.length;i++){
+        for(let j=0;j<aux2[i].length;j++){
+          aux3[k]=aux2[i][j];
+          k++;
+        }
+      }
+    
+      this.pedidos = aux3;
+      this.dataSource2 = this.pedidos;
+
     });
 
     this.service.getUsuarios(token).subscribe(datos=>{
       console.log(datos);
+      this.usuarios=datos;
+      this.dataSource = this.usuarios;
     });
   }
   
-  usuarios: Usuario[] = [
-    { "email": "asda@gmail.com", "nombre": "John", "apellido": "Doe", "rut": "17.543.432-1" }
-  ];
-
-  productos: Producto[] = [
-    {"id":"1", "cantidad":"1"}
-  ];
 
  //columnas de las tablas
-  displayedColumns1: string[] = ['email', 'nombre', 'apellido', 'rut'];
+  displayedColumns1: string[] = ['email', 'nombre', 'apellido','RUT'];
   displayedColumns2: string[] = ['id','cantidad'];
   //array de los objetos
-  dataSource = this.usuarios;
-  dataSource2 = this.productos;
+  
+  
 
 }
