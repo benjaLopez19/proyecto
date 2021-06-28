@@ -1,7 +1,8 @@
+<div class='background'>
 <form [formGroup]="IniciarSesionForm" (ngSubmit)='IniciarSesion()'>
 <mat-grid-list  cols='1' rowHeight='5:1'>
     <mat-grid-tile>
-        <mat-form-field appearance= 'outline' class="example-full-width">
+        <mat-form-field appearance= 'outline' class="ISemail">
             <mat-label>Correo Electrónico</mat-label>
             <input type="email" matInput [formControl]="emailFormControl" placeholder="Ej. ejemplo@ej.com">
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -13,20 +14,22 @@
           </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class='ISpass'>
             <mat-label>Contrasenia</mat-label>
             <input matInput [formControl]="clave"  [type]="hide ? 'password' : 'text'"> <!--[formControl]='contrasenia'-->
         </mat-form-field>
     </mat-grid-tile>
 </mat-grid-list>
+<div class='captcha'>
 <ngx-recaptcha2 #captchaElem
 [siteKey]="siteKey"
-formControlName="recaptcha">
+formControlName="recaptcha" >
 </ngx-recaptcha2>
-
+</div>
 <p *ngIf="sesion">
   Usuario o contraseña incorrectos.
 </p>
-<button type="submit" [disabled]="emailFormControl.invalid || clave.invalid">SUBMIT</button>
+<button class='submit' type="submit" [disabled]="emailFormControl.invalid || clave.invalid">Iniciar sesion</button>
 </form>
-<mat-checkbox [(ngModel)]="completo">Recordar Contraseña</mat-checkbox>
+<mat-checkbox class='recordar'[(ngModel)]="completo">¿Quieres que guardemos tu contraseña para un eventual inicio de sesion?</mat-checkbox>
+</div>

@@ -1,6 +1,24 @@
-mat-grid-tile {
-    background: lightblue;
-  }
+.background{
+  background-color: green;
+}
 p{
  font-weight: bolder;
+}
+.ISemail{
+ width: 50%;
+}
+.ISpass{
+  width:50%;
+}
+.captcha{
+ margin-left: 40%;
+ margin-right: 50%;
+ margin-top: 1%;
+ margin-bottom: 1%;
+}
+.submit{
+  margin-left: 40%;
+ margin-right: auto;
+ width: 10%;
+ height: 5%;
 }
