@@ -21,15 +21,14 @@ export class CarritoComponent implements OnInit {
   idCompra:number = 0;
   ngOnInit(): void {
     this.productos = this.carritoService.productosCarrito;
-
-    if(this,this.productos.length == 0){
+    console.log(this.productos);
+    if(this.productos.length == 0){
       this.bool = true;
       this.boton = false;
     }
   }
 
   sustraer(id:number){
-    console.log(id);
     for(let i = 0;i<this.productos.length;i++){
       if(this.productos[i].idProducto == id){
         if(this.productos[i].cantidad>1){
@@ -41,12 +40,14 @@ export class CarritoComponent implements OnInit {
   }
 
   sumar(id:number){
-    console.log(id);
     for(let i = 0;i<this.productos.length;i++){
       if(this.productos[i].idProducto == id){
-        this.productos[i].cantidad+1;
-        this.carritoService.sumar(id);
-      }
+          console.log(this.productos[i].stock);
+          if(this.carritoService.revisarStock(id)){
+            this.productos[i].cantidad+1;
+            this.carritoService.sumar(id);
+          }
+        }
     }
   }
 
@@ -64,10 +65,8 @@ export class CarritoComponent implements OnInit {
   }
 
   comprar(){
-    let aux = this.productos.length;
     let email = this.storage.datos.email;
     let token = this.storage.datos.token;
-
 
     if(email.length>0){
       this.carritoService.comprar(this.productos,email,token).subscribe(datos=>{
