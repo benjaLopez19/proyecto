@@ -3,6 +3,7 @@ import {Router} from '@angular/router'
 import { SearchService } from '../../services/search/search.service';
 import { Producto } from '../../interfaces/producto';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,7 +12,7 @@ import { Producto } from '../../interfaces/producto';
 export class SearchComponent implements OnInit {
 
   productos:Array<Producto>=[];
-  constructor(private servicio:SearchService) { 
+  constructor( private router:Router, private servicio:SearchService) { 
   
   }
 
@@ -27,4 +28,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  productoSeleccionado(id:number){
+    this.servicio.idBusqueda = id;
+    this.router.navigate(['/producto']);
+  }
 }
