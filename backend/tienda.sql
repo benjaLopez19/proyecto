@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2021 a las 05:37:38
+-- Tiempo de generación: 29-06-2021 a las 05:49:02
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -38,6 +38,9 @@ CREATE TABLE `calificacion` (
 --
 
 INSERT INTO `calificacion` (`idUsuario`, `idProducto`, `calificacion`) VALUES
+(0, 1, 5),
+(0, 3, 5),
+(0, 21, 5),
 (1, 1, 2),
 (1, 2, 4),
 (2, 2, 3);
@@ -75,6 +78,16 @@ CREATE TABLE `comentario` (
   `nombreUsuario` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `productoKey`, `usuarioKey`, `contenido`, `nombreUsuario`) VALUES
+(7, 1, 'admin@mail.cl', 'que wen gorrito, me vino de fabrica jiji', 'Benjamin Lopez'),
+(21, 1, 'admin@mail.cl', ':P ', 'Benjamin Lopez'),
+(22, 3, 'admin@mail.cl', 'JOJOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO', 'Benjamin Lopez'),
+(23, 21, 'admin@mail.cl', 'this is so spooky, i love it ', 'Benjamin Lopez');
+
 -- --------------------------------------------------------
 
 --
@@ -92,8 +105,6 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idPedido`, `idProductos`, `idUsuario`) VALUES
-(13, '[{\"id\":1,\"cantidad\":23},{\"id\":2,\"cantidad\":4}]', 'donwea@live.cl'),
-(14, '[{\"id\":1,\"cantidad\":23},{\"id\":2,\"cantidad\":4}]', 'donwea@live.cl'),
 (15, '[{\"id\":1,\"cantidad\":1}]', 'admin@mail.cl'),
 (16, '[{\"id\":1,\"cantidad\":1},{\"id\":3,\"cantidad\":1}]', 'admin@mail.cl'),
 (17, '[{\"id\":1,\"cantidad\":7},{\"id\":3,\"cantidad\":6}]', 'admin@mail.cl'),
@@ -159,12 +170,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`email`, `nombre`, `apellido`, `clave`, `region`, `comuna`, `admin`, `RUT`, `direccion`) VALUES
 ('admin@mail.cl', 'Benjamin', 'Lopez', '81dc9bdb52d04dc20036dbd8313ed055', 'Región de Tarapacá', 'Camiña', 1, '12-2', 'Olmos 295'),
-('benja323_patricio_@hotmail.com', 'Don', 'wea', '052a1a3c0142ad636571f88ea2506eac', 'region', 'comuna', 0, '31561456', 'Olmos 295'),
-('benja_patricio_@hotmail.com', 'Benjamin', 'Lopez', '202cb962ac59075b964b07152d234b70', 'region', 'comuna', 0, '123', 'Olmos 295'),
-('correo@mail.cl', 'gatosqls', 'holi', '81dc9bdb52d04dc20036dbd8313ed055', 'valparaiso', 'limache', 0, '11.111.111-1', 'callexweaeaweawea'),
-('cosdrreo@mail.cl', 'gatosqls', 'holi', '81dc9bdb52d04dc20036dbd8313ed055', 'valparaiso', 'limache', 0, '11.111.111-1', 'callexweaeaweawea'),
-('donwea@live.cl', 'Tanta', 'Corneta', '81dc9bdb52d04dc20036dbd8313ed055', 'region', 'comuna', 0, '111111111', 'direccion'),
-('hotmail@wea.cl', 'TuMama', 'biba', '202cb962ac59075b964b07152d234b70', 'Región de Antofagasta', 'María Elena', 0, '12302302', 'conchetumare');
+('benja323_patricio_@hotmail.com', 'Don', 'Martins', '052a1a3c0142ad636571f88ea2506eac', 'region', 'comuna', 0, '31561456', 'Olmos 295'),
+('benja_patricio_@hotmail.com', 'Benjamin', 'Lopez', '202cb962ac59075b964b07152d234b70', 'region', 'comuna', 0, '123', 'Olmos 295');
 
 --
 -- Índices para tablas volcadas
@@ -220,7 +227,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
