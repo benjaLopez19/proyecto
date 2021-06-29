@@ -1,3 +1,22 @@
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquerry3.6.0/jquerry.min.js"></script>
+<script>
+  const settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://password-and-captcha-generator.p.rapidapi.com/generateCaptcha?text=123abc&width=160&height=60",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "dec2fadb75mshde85faf97467e37p19ffadjsn4901caace82e",
+		"x-rapidapi-host": "password-and-captcha-generator.p.rapidapi.com"
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
+</script>-->
+
+
 <div class='background'>
   <h1>Iniciar Sesion</h1>
 <form [formGroup]="IniciarSesionForm" (ngSubmit)='IniciarSesion()'>
@@ -23,10 +42,10 @@
 </mat-grid-list>
 
 <div class='captcha'>
-<ngx-recaptcha2 #captchaElem
-[siteKey]="siteKey"
-formControlName="recaptcha" >
-</ngx-recaptcha2>
+  <re-captcha
+  (resolved)="resolved($event)"
+  siteKey="6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp"
+></re-captcha>
 </div>
 <p *ngIf="sesion">
   Usuario o contraseña incorrectos.
@@ -37,4 +56,4 @@ formControlName="recaptcha" >
 <p> </p><br>
 <p></p>
 
-</div>git
+</div>
