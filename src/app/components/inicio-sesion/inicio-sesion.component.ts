@@ -23,7 +23,7 @@ export class InicioSesionComponent implements OnInit {
   /****************/
   completo:boolean=false; //completo es tu variable blu 
   hide=true;
-  siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
+
   IniciarSesionForm:FormGroup;
   constructor(public fb: FormBuilder, private apiSerivce:ApiService, private storage:StorageService, private router:Router) {
     this.IniciarSesionForm = this.fb.group({
@@ -34,25 +34,31 @@ export class InicioSesionComponent implements OnInit {
   ngOnInit(): void {
    
   }
-
-
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
   IniciarSesion(){
-    let email = this.emailFormControl.value;
-    let claveAux = this.clave.value; 
-    this.apiSerivce.incioSesion(email,claveAux).subscribe(datos=>{
-      console.log(datos);
-      console.log(datos["token"]+" "+datos["admin"]);
-      if(this.completo){
-        this.storage.cargarDatos(datos["token"],email,datos["admin"]);
-        this.router.navigate(['/home']);
-        return;
-      }else{
-        this.storage.cargarDatosSession(datos["token"],email,datos["admin"]);
-        this.router.navigate(['/home']);
-      }
-      
-    });
-    this.sesion = true;
+    if(grecaptcha.getResponse() != ""){
+      let email = this.emailFormControl.value;
+      let claveAux = this.clave.value; 
+      this.apiSerivce.incioSesion(email,claveAux).subscribe(datos=>{
+        console.log(datos);
+        console.log(datos["token"]+" "+datos["admin"]);
+        if(this.completo){
+          this.storage.cargarDatos(datos["token"],email,datos["admin"]);
+          this.router.navigate(['/home']);
+          return;
+        }else{
+          this.storage.cargarDatosSession(datos["token"],email,datos["admin"]);
+          this.router.navigate(['/home']);
+        }
+        
+      });
+      this.sesion = true;
    
+    }
+    else{
+      alert('no se ha completado el captcha');
+    }
   }
 }

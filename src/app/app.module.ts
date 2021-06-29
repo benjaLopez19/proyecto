@@ -35,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 
 
@@ -77,7 +78,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatTableModule,
     MatListModule,
     MatButtonToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    BrowserModule,
+    RecaptchaModule,
+   RecaptchaFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
