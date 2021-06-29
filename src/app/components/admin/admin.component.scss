@@ -8,10 +8,24 @@
     margin-left:5%;
     margin-right:5%;
     margin-top:2%;
+    width:80%;
 }
-
-
 
 table{
     width:100%;
+}
+
+mat-card{
+  width:50%;
+  background-color:#ed6700;
+  margin-bottom:2%;  
+  color:white;
+}
+
+.productos{
+    margin:5%;
+}
+
+ul{
+    list-style-type:none;
 }

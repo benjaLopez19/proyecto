@@ -37,48 +37,32 @@
 <div class="producto-table">
     <label for="productos">Reporte de productos comprados:</label>
 
-    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-    
-        <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-    
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID Pedido</th>
-            <td mat-cell *matCellDef="let item"> {{item.id}} </td>
-        </ng-container>
-    
-
-        <!--Productos Column -->
-        
-        <ng-container matColumnDef="cantidad">
-            <th mat-header-cell *matHeaderCellDef> Productos </th>
-            <td mat-cell *matCellDef="let item"> 
-                <ul class="productos-pedido">
-                    <li>{{item.productos.id}}</li>
-                    <li>{{item.productos.producto}}</li>
-                </ul>
-             </td>
-        </ng-container> 
-        
-        
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-    </table>
+   
+    <table> 
 
     <tr *ngFor="let item of auxR">
-        <td>ID PEDIDO {{item.idPedido}}</td>
+        <mat-card>
+        <td>id Pedido:{{item.idPedido}} </td>
+        
+        <div class="productos">
         <td>
+            <label>Productos Comprados:</label>
             <tr *ngFor="let item2 of item.idProductos">
-                <td>
-                    ID PRODUCTO {{item2.id}}
-                </td>
-                <td>
-                   CANTIDAD {{item2.cantidad}}
+                
+                 <td> 
+                     <ul>    
+                         <li>              
+                   <div class="idproducto">ID de Producto: {{item2.id}}</div> 
+                        </li>
+                        <li>
+                   <div class="cantidad">Cantidad: {{item2.cantidad}}</div>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         </td>
+        </div>
+        </mat-card>
     </tr> 
-
+    </table>
 </div>

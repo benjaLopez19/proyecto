@@ -80,7 +80,6 @@ export class AdminComponent implements OnInit {
           aux2[1][i] = this.pedidos[i].idPedido;
       }
       
-      console.log(aux2);
     
       //desmantelando el array de objetos para guardar todo en un mismo arreglo
       let k=0;
