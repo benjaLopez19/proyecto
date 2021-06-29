@@ -73,26 +73,6 @@ export class AdminComponent implements OnInit {
       this.auxR.splice(0,1)
       console.log(this.auxR);
       //sacando informacion del arreglo que llega
-
-      for(let i=0;i<this.pedidos.length;i++){
-         aux = this.pedidos[i].idProductos;
-          aux2[0][i] = JSON.parse(aux);
-          aux2[1][i] = this.pedidos[i].idPedido;
-      }
-      
-    
-      //desmantelando el array de objetos para guardar todo en un mismo arreglo
-      let k=0;
-      for(let i=0;i<aux2.length;i++){
-        for(let j=0;j<aux2[i].length;j++){
-          aux3[k]=aux2[i][j];
-          k++;
-        }
-      }
-    
-      this.pedidos = aux3;
-      this.dataSource2 = this.pedidos;
-
     });
 
     this.service.getUsuarios(token).subscribe(datos=>{

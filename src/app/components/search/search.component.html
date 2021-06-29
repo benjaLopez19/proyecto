@@ -12,12 +12,6 @@
         <td>{{item.precio}}</td>
     </tr>
 </table>-->
-
-<p *ngIf="busqueda==false">
-   <ngb-alert type="danger">No se encuentran resultados de la busqueda</ngb-alert>
-</p>
-
-
 <!--<div class='cartasdiv'*ngIf="busqueda==true">
 <ul class='cartas' *ngFor="let item of productos">
     <li>
@@ -52,13 +46,14 @@
         <input matInput type="number" [formControl]='preciomin'>
       </mat-form-field>
     </div>
-    <button mat-button type="submit">Buscar</button>
+
+    <button mat-button type="submit" (click)="funcion()">Buscar</button>
     <mat-divider></mat-divider>
     <ul class="productos-list">
         <li>
             <mat-card class="productos-card" *ngFor="let item of productos">
             <a><button (click)='productoSeleccionado(item.id)'>
-                <div class="producto-descripcion">
+                <div class="producto-descripcion" >
                     <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
                     <div>{{item.nombre}}</div>
                     <div>${{item.precio}}</div>
@@ -71,5 +66,5 @@
 </div>
 
 <div *ngIf="!busqueda">
-    Actualmente no hay productos en esta categoria.
+    No se encontraron resultados.
 </div>

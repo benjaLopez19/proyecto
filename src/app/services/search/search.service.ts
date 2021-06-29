@@ -28,6 +28,8 @@ export class SearchService {
     //console.log(`${this.url}getProductosByNombre/${this.stringBusqueda}`);
     if(this.stringBusqueda===""){
       return this.http.get(`${this.url}getProductosByNombre/NoUnObjeto`);
+    }else if(this.stringBusqueda===" "){
+      return this.http.get(`${this.url}getProductosByNombre/NoUnObjeto`);
     }
     return this.http.get(`${this.url}getProductosByNombre/${this.stringBusqueda}`);
   }
@@ -36,6 +38,5 @@ export class SearchService {
     console.log(`${this.url}getProductosById/${this.idBusqueda}`);
     return this.http.get(`${this.url}getProductosById/${this.idBusqueda}`);
   }
-
-
+  
 }
