@@ -37,7 +37,7 @@
             <mat-card class="productos-card" *ngFor="let item of productos">
             <a><button (click)='productoSeleccionado(item.id)'>
                 <div class="producto-descripcion">
-                    <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
+                    <img src="{{item.imagen}}" class="imagen-producto">   
                     <div class="nombre-item">{{item.nombre}}</div>
                     <div class="precio-item">${{item.precio}}</div>
                     <div class="stock-item">Stock: {{item.stock}}</div>
