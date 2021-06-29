@@ -24,6 +24,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private service:ApiService, private storage:StorageService, private router:Router) { }
   pedidos:any;
+  auxR:any;
   usuarios:any;
   dataSource:any;
   dataSource2:any;
@@ -39,7 +40,40 @@ export class AdminComponent implements OnInit {
       let aux:any;
       let aux2:any = [];
       let aux3:any =[];
+
+
+      let auxR:any = [{
+        idPedido:Number,
+        idProductos:[{
+          id:Number,
+          cantidad:Number 
+        }]
+      }];
+
+
+      for(let i=0;i<this.pedidos.length;i++){
+        console.log(i);
+        aux = this.pedidos[i];
+        console.log(aux);
+        aux2 = JSON.parse(aux["idProductos"]);
+        console.log(aux2);
+
+        aux3 = {
+          idPedido:aux.idPedido,
+          idProductos:aux2
+        };
+
+        auxR.push(aux3);
+
+        console.log(aux3);
+      }
+
+      console.log(auxR);
+      this.auxR=auxR;
+      this.auxR.splice(0,1)
+      console.log(this.auxR);
       //sacando informacion del arreglo que llega
+
       for(let i=0;i<this.pedidos.length;i++){
          aux = this.pedidos[i].idProductos;
           aux2[0][i] = JSON.parse(aux);
@@ -63,7 +97,7 @@ export class AdminComponent implements OnInit {
     });
 
     this.service.getUsuarios(token).subscribe(datos=>{
-      console.log(datos);
+      //console.log(datos);
       this.usuarios=datos;
       this.dataSource = this.usuarios;
     });

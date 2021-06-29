@@ -26,7 +26,7 @@
     <!-- RUT Column -->
     <ng-container matColumnDef="RUT">
         <th mat-header-cell *matHeaderCellDef> RUT </th>
-        <td mat-cell *matCellDef="let element">{{element.rut}} </td>
+        <td mat-cell *matCellDef="let element">{{element.RUT}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
@@ -50,6 +50,7 @@
     
 
         <!--Productos Column -->
+        
         <ng-container matColumnDef="cantidad">
             <th mat-header-cell *matHeaderCellDef> Productos </th>
             <td mat-cell *matCellDef="let item"> 
@@ -58,11 +59,26 @@
                     <li>{{item.productos.producto}}</li>
                 </ul>
              </td>
-        </ng-container>
-
+        </ng-container> 
+        
+        
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
     </table>
+
+    <tr *ngFor="let item of auxR">
+        <td>ID PEDIDO {{item.idPedido}}</td>
+        <td>
+            <tr *ngFor="let item2 of item.idProductos">
+                <td>
+                    ID PRODUCTO {{item2.id}}
+                </td>
+                <td>
+                   CANTIDAD {{item2.cantidad}}
+                </td>
+            </tr>
+        </td>
+    </tr> 
 
 </div>
