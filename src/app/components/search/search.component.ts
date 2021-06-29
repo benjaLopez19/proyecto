@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router'
 import { SearchService } from '../../services/search/search.service';
 import { Producto } from '../../interfaces/producto';
-
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,10 @@ import { Producto } from '../../interfaces/producto';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
+  stock = false;
+  //formcontrol
+  preciomax = new FormControl('',[]);
+  preciomin = new FormControl('',[]);
   productos:Array<Producto>=[];
   constructor( private router:Router, private servicio:SearchService) { 
   
