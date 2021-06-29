@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2021 a las 19:34:59
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.5
+-- Tiempo de generación: 29-06-2021 a las 05:37:38
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -127,13 +127,13 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `stock`, `calificacion`, `nombre`, `descripcion`, `categoria`, `precio`, `imagen`) VALUES
-(1, 2, 10, 'Ghastly gibus', 'Gorreo feo', 'hat', 2000, ''),
-(3, 1, 20, 'starboard crusader', 'jojo reference', 'hat', 10000, ''),
-(21, 10, 10, 'testa', 'pruea', 'hat', 420, ''),
-(22, 5, 15, 'pruea', 'test', 'hat', 400000, 'undefined'),
-(23, 5, 15, 'pruea', 'test', 'hat', 400000, 'undefined'),
-(24, 5, 15, 'pruea', 'test', 'hat', 400000, 'undefined'),
-(25, 5, 15, 'pruea', 'test', 'hat', 400000, 'undefined');
+(1, 2, 10, 'Ghastly Gibus', 'Spooky ', 'hat', 2000, '../../../assets/img/ghostlyGibus.png'),
+(3, 1, 20, 'starboard crusader', 'jojo reference', 'hat', 10000, '../../../assets/img/starboardCrusader.png'),
+(21, 10, 10, 'Spine Chilling Skull', 'Express your undying hatred.', 'hat', 420, '../../../assets/img/spineChilling.png'),
+(22, 5, 15, 'Brown Bomber', 'Canada\'s signature', 'hat', 400000, '../../../assets/img/brownBomber.png'),
+(23, 5, 15, 'Defiant Spartan', 'SPARTA!!!!', 'hat', 400000, '../../../assets/img/defiantSpartan.png'),
+(24, 5, 15, 'The Alien Cranium', 'Watch your back.', 'hat', 400000, '../../../assets/img/alienCranium.png'),
+(25, 5, 15, 'The Wraith Wrap', 'Lay waste to all that oposses you.', 'hat', 400000, '../../../assets/img/wraithWrap.png');
 
 -- --------------------------------------------------------
 
