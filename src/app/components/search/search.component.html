@@ -18,7 +18,7 @@
 </p>
 
 
-<div *ngIf="busqueda==true">
+<!--<div class='cartasdiv'*ngIf="busqueda==true">
 <ul class='cartas' *ngFor="let item of productos">
     <li>
         <mat-card class='Cardproducto'>
@@ -26,16 +26,36 @@
                 <mat-card-title>{{item.nombre}}</mat-card-title>
             </mat-card-header>
             <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-            <mat-card-content>
+            <mat-card-content >
                 <mat-list>
-                    <mat-list-item>{{item.descripcion}}</mat-list-item>
-                    <mat-divider [inset]="true" [vertical]="true"></mat-divider>
+                    <mat-list-item class='cardContent'>{{item.descripcion}}</mat-list-item>
+                    <mat-divider></mat-divider>
                     <mat-list-item>items en stock: {{item.stock}}</mat-list-item>
-                    <mat-divider [inset]="true" [vertical]="true"></mat-divider>
+                    <mat-divider></mat-divider>
                     <mat-list-item>${{item.precio}} clp</mat-list-item>
                 </mat-list>
             </mat-card-content>
         </mat-card>
     </li>
 </ul>
+</div>-->
+<div class="productos" *ngIf="busqueda" >
+    <ul class="productos-list">
+        <li>
+            <mat-card class="productos-card" *ngFor="let item of productos">
+            <a><button (click)='productoSeleccionado(item.id)'>
+                <div class="producto-descripcion">
+                    <img src="../../../assets/img/ghostlyGibus.png" class="imagen-producto">   
+                    <div>{{item.nombre}}</div>
+                    <div>${{item.precio}}</div>
+                    <div>Stock: {{item.stock}}</div>
+                </div>
+            </button></a>
+            </mat-card>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="!busqueda">
+    Actualmente no hay productos en esta categoria.
 </div>

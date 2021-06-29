@@ -45,8 +45,7 @@ export class FormularioComponent implements OnInit {
   ])
  
   //validators
-
-  
+ 
   region = new FormControl('');
   //ocultar la pass
   hide =true;
@@ -58,8 +57,9 @@ export class FormularioComponent implements OnInit {
   registrado:boolean=true;
   comunas = ' '.split('.');
   RegistrarForm:FormGroup;
-  siteKey:string='6LeI31EbAAAAACqTc_Nndi2lsNpDy9SzFDQebmKp';
-  constructor(public fb: FormBuilder, private service:ApiService, private router:Router) {
+  siteKey:string='6LcHh2IbAAAAANuLOUY78luerpCZx4P_TsqEN9lU';
+  
+  constructor(public fb: FormBuilder, private service:ApiService, private router:Router,) {
 
     this.RegistrarForm = this.fb.group({
       recaptcha: ['', Validators.required]
@@ -147,6 +147,7 @@ export class FormularioComponent implements OnInit {
     }
 
 }
+
   Registrarse(){
     /*
     console.log(this.nombre.value+' '
@@ -163,6 +164,7 @@ export class FormularioComponent implements OnInit {
       this.registrado=false;
       this.contrasenia.setValue('');
       this.contrasenia2.setValue('');
+
     }
     else{
     this.service.createUsuario(

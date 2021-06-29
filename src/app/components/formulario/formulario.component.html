@@ -87,12 +87,13 @@
     </mat-grid-list>
     <ngx-recaptcha2 #captchaElem
         [siteKey]="siteKey"
+        
         formControlName="recaptcha">
     </ngx-recaptcha2>
     <p *ngIf="bool">
         <ngb-alert *ngIf="bool" type="danger" (closed)="close()">Usuario ya registrado</ngb-alert>
     </p>
-    <button type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid "> KLASJDKLASDJKALSJDLSAKDJAKLSDJASKDLJ</button>
+    <button class='btnregistrarse'type="submit" [disabled]="nombre.invalid || contrasenia2.invalid || apellido.invalid || rut.invalid || direccion.invalid || contrasenia.invalid|| region.invalid || emailFormControl.invalid ">Registrarse</button>
     <p *ngIf="!registrado">
         <ngb-alert *ngIf="!registrado" type="danger" (closed)="close()">Contrasenias diferentes</ngb-alert>
     </p>
